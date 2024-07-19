@@ -1,0 +1,193 @@
+.home{
+    width: 80%;
+    margin: 120px auto;
+    margin-bottom: 0;
+    padding-bottom: 40px;
+}
+
+.home h1{
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: bolder;
+    margin: 40px auto;
+}
+
+.home .img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+}
+
+.home .img img{
+    width: 400px;
+}
+
+.home p{
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.home h5{
+    margin: 35px auto;
+    font-size: 1.04rem;
+    text-align: center;
+    color: #333;
+}
+
+.home .partners {
+    margin: 120px auto;
+}
+
+.home .partners h3{
+    margin: 20px auto;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.home .partners .moving-bar{
+    margin: 100px auto;
+    overflow: hidden;
+}
+.home .partners .moving-bar-inner{
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    animation: move 10s linear infinite;
+}
+
+.home .partners .moving-bar-inner img{
+    width: 230px;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.home .button{
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.home button{
+    cursor: pointer;
+    padding: 15px 45px;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background-color: #e391eed5;
+    color: #000;
+}
+
+
+.home button:hover{
+    background-color: #eb81cb;
+}
+
+
+.row {
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.row .card{
+    padding: 20px;
+  width: 290px;
+  height: 380px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid #00000027;
+  box-shadow: 2px 2px 5px #deb5f171;
+  transition: all .3s ease-in;
+  margin: 20px;
+}
+
+.row .card h5{
+    font-size: 1.4rem;
+  color: #cd78d8d5;
+}
+
+.row .card p{
+    height: 300px;
+    color: #333;
+    font-size: 1rem;
+}
+
+.why-choose-giftflow {
+    text-align: center;
+    padding: 20px;
+    margin: 30px auto;
+}
+
+.why-choose-giftflow h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cards-container .card {
+    background: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 35px 20px;
+    margin: 20px;
+    width: 300px;
+    min-height: 360px;
+    height: auto;
+    border: 1px solid #00000017;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h5 {
+    color: #cd78d8d5;
+    font-size: 1.25rem;
+}
+
+.card p{
+    font-size: 1rem;
+}
+
+
+footer{
+    text-align: center;
+    font-size: 1.1rem;
+    color: #eb81cb;
+}
+
+@media only screen and (max-width: 400px) {
+    .row .card{
+        height: auto;
+    }
+
+}

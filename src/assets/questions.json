@@ -1,0 +1,58 @@
+[
+    {
+      "id": 0,
+      "title": "What is the age of the child?",
+      "options": [
+        { "value": "3-6", "label": "3-6" },
+        { "value": "6-10", "label": "6-10" },
+        { "value": "10-12", "label": "10-12" },
+        { "value": "12-16", "label": "12-16" }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "What kinds of games does he like to play the most?",
+      "options": [
+        { "value": "Board games", "label": "Board games" },
+        { "value": "Outdoor games", "label": "Outdoor games" },
+        { "value": "Technology games (such as game consoles or computer games)", "label": "Technology games (such as game consoles or computer games)" },
+        { "value": "Puzzle building and challenge tests", "label": "Puzzle building and challenge tests" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "What are your child's favorite movies or series?",
+      "options": [
+        { "value": "Animated movies", "label": "Animated movies" },
+        { "value": "Action series", "label": "Action series" },
+        { "value": "Dramas", "label": "Dramas" },
+        { "value": "Comedies", "label": "Comedies" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "How does he like to spend time during vacations or on weekends?",
+      "options": [
+        { "value": "Outdoor activities like hiking or sports", "label": "Outdoor activities like hiking or sports" },
+        { "value": "Arts and crafts", "label": "Arts and crafts" },
+        { "value": "Indoor games and activities", "label": "Indoor games and activities" },
+        { "value": "Watching movies or TV series at home", "label": "Watching movies or TV series at home" }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "What types of books does he like to read?",
+      "options": [
+        { "value": "Fantasy", "label": "Fantasy" },
+        { "value": "Science fiction", "label": "Science fiction" },
+        { "value": "Thriller and adventure books", "label": "Thriller and adventure books" },
+        { "value": "Educational and mentoring books", "label": "Educational and mentoring books" }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Is there something important for us to know?",
+      "options": []
+    }
+  ]
+  

@@ -1,0 +1,147 @@
+.ai-page {
+  padding: 20px;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.products-body {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.started {
+  margin: 0;
+  text-align: center;
+}
+
+.started h1{
+  font-size: 2.7rem;
+}
+
+.started p{
+  margin: 20px auto;
+}
+
+.started button{
+  margin: 30px auto;
+}
+
+.primary-button,
+.secondary-button,
+.success-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.primary-button {
+  background-color: #5fafdd;
+  color: white;
+}
+
+.secondary-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.success-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.success-button:hover {
+  opacity: 0.8;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #c2d6e744;
+  border-radius: 4px;
+  border: 1px solid #00000027;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.progress-bar-inner {
+  height: 28px;
+  background-color: #e1b8e9;
+  transition: width 0.3s ease;
+}
+
+.progress-label {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 10%;
+  left: 0;
+  font-size: 1.2rem;
+  line-height: 20px;
+  color: #fff;
+}
+
+.question-container {
+  margin: 30px 0;
+}
+
+.question-container h3{
+  margin: 50px auto;
+}
+
+.options-group {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.radio-label {
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  word-wrap: none;
+}
+
+
+.textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 10px;
+  font-size: 1.2rem;
+  outline: none;
+  border: 1px solid #00000027;
+  box-shadow: 2px 2px 5px #deb5f171;
+  border-radius: 20px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.products h1{
+  font-size: 2.7rem;
+}
+
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,86 @@
+.gift-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.gift-list .product-card {
+  padding: 20px;
+  width: 300px;
+  min-height: 350px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 10px;
+  background: #ceddeb28;
+  border: 1px solid #00000027;
+  box-shadow: 2px 2px 5px #deb5f171;
+  transition: all .3s ease-in;
+  margin: 20px;
+  text-align: center;
+}
+
+.gift-list .product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.gift-list .product-image {
+  width: 90%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin: 0%;
+}
+
+.gift-list .product-name {
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+
+}
+
+.gift-list .product-description {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  padding: 0;
+}
+
+.gift-list .price {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0;
+  padding: 0;
+
+}
+
+.gift-list .icon-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+#icon-button {
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  outline: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#icon-button:hover {
+  transform: scale(1.2);
+}

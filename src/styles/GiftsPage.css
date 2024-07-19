@@ -1,0 +1,108 @@
+.gifts-page {
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.page-title {
+  color: #1a1a1a; 
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.page-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.child-list {
+  flex: 1;
+  border: 1px solid #4a4a4a38;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.gift-section {
+  flex: 2;
+  border: 1px solid #4a4a4a38;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.gift-section .gift{
+  margin: auto;
+}
+
+.btn {
+  padding: 15px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 20px;
+  background-color: #ff92ad;
+  color: #000;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #eb81cb;
+}
+
+.view-switcher {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.invite-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.invite-btn {
+  margin: 10px auto;
+  cursor: pointer;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  background-color: #8fb6ff; 
+  color: #fff;
+}
+
+.invite-btn:hover {
+  background-color: #3a6cf0;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #ffffff; 
+  border-radius: 20px;
+  padding: 20px;
+  min-width: 450px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+@media only screen and (max-width: 1160px) {
+
+  .page-content{
+    flex-direction: column;
+  }
+
+}
