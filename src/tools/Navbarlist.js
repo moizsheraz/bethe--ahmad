@@ -39,7 +39,7 @@ const Navbarlist = ({ currentUser, onLogout }) => {
             <div className="dropdown">
               <button className="dropbtn">
                 <div className="user">
-                  {currentUser.charAt(0)}
+                  {currentUser.email.charAt(0)}
                 </div>
               </button>
               <div className="dropdown-content">

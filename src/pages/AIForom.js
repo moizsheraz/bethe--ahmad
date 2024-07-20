@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import userQuestions from '../assets/questions.json';
 import '../styles/Aiforom.css';
 import ProductCard from '../Product';
+import productsData from '../assets/products.json'; // Assuming you have this file
 
 function SurveyForm() {
   const [questions, setQuestions] = useState([]);
@@ -13,15 +15,16 @@ function SurveyForm() {
   const [products, setProducts] = useState([]);
   const [likedProducts, setLikedProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [answers, setAnswers] = useState({}); // To store user's answers
 
   useEffect(() => {
     setQuestions(userQuestions);
-    setProducts([
-      { id: 1, name: 'Lego Package', description: 'This is product 1', image: 'https://www.lego.com/cdn/cs/set/assets/blt61f68cd89d49cc06/11029_alt1.png',price : 50 ,isLiked: false,  },
-      { id: 2, name: 'Chess', description: 'This is product 2', image: 'https://5.imimg.com/data5/PG/LD/CL/SELLER-14274915/magnetic-chess-game.jpg',price : 30 ,isLiked: false,  },
-      { id: 3, name: 'Product 3', description: 'This is product 3', image: 'https://m.media-amazon.com/images/I/71x1TrqgSmL._AC_UF894,1000_QL80_.jpg',price : 20 ,isLiked: false,  },
-    ]);
   }, []);
+
+  const handleAnswerChange = (e) => {
+    const { name, value } = e.target;
+    setAnswers(prevAnswers => ({ ...prevAnswers, [name]: value }));
+  };
 
   const toggleLike = (id) => {
     const updatedProducts = products.map(product =>
@@ -41,8 +44,6 @@ function SurveyForm() {
     setSnackbarOpen(true);
   };
 
- 
-
   const handleNext = () => {
     if (step < questions.length - 1) {
       setStep(prevStep => prevStep + 1);
@@ -57,8 +58,30 @@ function SurveyForm() {
     }
   };
 
-  const handleFinish = () => {
+  const axiosOptions = {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }
+
+  const handleFinish = async () => {
     setIsFinished(true);
+    
+    // Send answers to the backend and get suggested products
+
+    try {
+      const response = await axios.post('http://localhost:4000/suggest-products', answers, axiosOptions);
+      const suggestedProductIds = response.data.suggestedProductIds.split(',').map(id => id.trim());
+      
+      // Filter products based on suggested IDs
+      const filteredProducts = productsData.filter(product => suggestedProductIds.includes(product.id.toString()));
+      setProducts(filteredProducts);
+    } catch (error) {
+      console.error('Error:', error);
+      setSnackbarMessage('An error occurred while fetching product suggestions.');
+      setSnackbarOpen(true);
+    }
   };
 
   const handleCloseSnackbar = () => {
@@ -112,6 +135,7 @@ function SurveyForm() {
                             name={`question-${questions[step].id}`}
                             value={option.value}
                             className="radio-input"
+                            onChange={handleAnswerChange}
                             required
                           />
                           {option.label}
