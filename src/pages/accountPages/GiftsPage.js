@@ -7,11 +7,17 @@ import GiftList from './GiftList';
 import AddGiftForm from './AddGiftForm';
 import EditGiftForm from './EditGiftForm';
 import InvetationForom from "../InvetationPages/InvetationForom";
-import productsData from '../../assets/products.json'; // Import products data
+import productsData from '../../assets/products.json'; 
+import { firestore,app } from '../../firebase/firebase';
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where } from 'firebase/firestore';
+
 
 const GiftsPage = () => {
   const { childrenData } = useChild(); 
-  const [children, setChildren] = useState(childrenData);
+  const [children, setChildren] = useState(childrenData.map(child => ({
+    ...child,
+    gifts: child.gifts || [] // Ensure gifts is always an array
+  })));
   const [selectedChild, setSelectedChild] = useState(null);
   const [addingGift, setAddingGift] = useState(false);
   const [editingGift, setEditingGift] = useState(null);
@@ -23,7 +29,7 @@ const GiftsPage = () => {
   const getAiSuggestedProductIds = async () => {
     try {
       // Replace with your actual API endpoint and data structure
-      const response = await axios.post('http://localhost:4000/suggest-products', { answers: selectedChild.answers });
+      const response = await axios.post('http://localhost:4000/suggest-products', { answers: selectedChild?.answers || {} });
       return response.data.suggestedProductIds.split(',').map(id => id.trim());
     } catch (error) {
       console.error('Error fetching AI suggestions:', error);
@@ -49,30 +55,57 @@ const GiftsPage = () => {
     fetchSuggestedGifts();
   }, [selectedChild]);
 
-  const addGift = (childName, gift) => {
-    setChildren(children.map(child => 
+  const addGift = async (childName, gift) => {
+    const updatedChildren = children.map(child => 
       child.name === childName ? { ...child, gifts: [...child.gifts, gift] } : child
-    ));
+    );
+    setChildren(updatedChildren);
+    
+    // Update Firestore
+    const childRef = doc(firestore, 'children', selectedChild.id);
+    await updateDoc(childRef, {
+      gifts: updatedChildren.find(child => child.name === childName).gifts
+    });
+    
     setAddingGift(false);
     setView('list');
   };
+  
 
-  const deleteGift = (childName, giftId) => {
-    setChildren(children.map(child => 
+  const deleteGift = async (childName, giftId) => {
+    const updatedChildren = children.map(child => 
       child.name === childName 
         ? { ...child, gifts: child.gifts.filter(gift => gift.id !== giftId) }
         : child
-    ));
+    );
+    setChildren(updatedChildren);
+    
+    // Remove gift from Firestore
+    const childRef = doc(firestore, 'children', selectedChild.id);
+    await updateDoc(childRef, {
+      gifts: updatedChildren.find(child => child.name === childName).gifts
+    });
   };
+  
+  
 
-  const updateGift = (childName, updatedGift) => {
-    setChildren(children.map(child => 
+  const updateGift = async (childName, updatedGift) => {
+    const updatedChildren = children.map(child => 
       child.name === childName 
         ? { ...child, gifts: child.gifts.map(gift => gift.id === updatedGift.id ? updatedGift : gift) }
         : child
-    ));
+    );
+    setChildren(updatedChildren);
+    
+    const childRef = doc(firestore, 'children', selectedChild.id);
+    await updateDoc(childRef, {
+      gifts: updatedChildren.find(child => child.name === childName).gifts
+    });
+    
     setEditingGift(null);
   };
+  
+  
 
   return (
     <div className="gifts-page">
@@ -93,7 +126,7 @@ const GiftsPage = () => {
                 <>
                   <GiftList
                     className='gift'
-                    gifts={selectedChild?.gifts} 
+                    gifts={selectedChild?.gifts || []} // Ensure gifts is an array
                     deleteGift={deleteGift} 
                     setEditingGift={setEditingGift} 
                     childName={selectedChild?.name}
@@ -158,7 +191,7 @@ const GiftsPage = () => {
         <div className="modal-overlay">
           <div className="modal-content">
             <InvetationForom 
-              listOfGifts={selectedChild.gifts}
+              listOfGifts={selectedChild.gifts || []} // Ensure gifts is an array
               childName={selectedChild.name} 
             />
           </div>
@@ -169,3 +202,5 @@ const GiftsPage = () => {
 };
 
 export default GiftsPage;
+;
+

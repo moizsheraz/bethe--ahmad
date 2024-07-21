@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {getAuth,GoogleAuthProvider } from "firebase/auth"
-import {getFirestore} from "firebase/firestore"
 import {getStorage} from "firebase/storage"
+import { getFirestore, collection, doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 const firebaseConfig = {
   apiKey: "AIzaSyA06l9PycCk3pp5sQSIvFVItYyai5d-7MQ",
   authDomain: "giftflow-2ce98.firebaseapp.com",
