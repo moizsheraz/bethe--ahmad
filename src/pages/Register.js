@@ -27,6 +27,7 @@ const Register = () => {
 
       await setDoc(doc(firestore, 'users', user.uid), {
         email: user.email,
+        children: [], // Initialize children array
         createdAt: Date.now(),
       });
 
@@ -41,9 +42,10 @@ const Register = () => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
 
-      // You might want to save user data to Firestore
+      // Save user data to Firestore
       await setDoc(doc(firestore, 'users', user.uid), {
         email: user.email,
+        children: [], // Initialize children array
         createdAt: Date.now(),
       });
 

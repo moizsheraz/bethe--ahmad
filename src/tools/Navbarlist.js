@@ -44,7 +44,7 @@ const Navbarlist = ({ currentUser, onLogout }) => {
               </button>
               <div className="dropdown-content">
                 <Link to="/gifts-Page" onClick={() => setIsOpen(false)}>
-                  Children List
+                  Manage Gifts
                 </Link>
                 <Link to="/questions-page" onClick={() => setIsOpen(false)}>
                   My Children

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useChild } from './context/ChildContext';
 import ChildList from './accountPages/ChildList';
 import QAList from './QAList';
@@ -8,17 +8,22 @@ import '../styles/questionPage.css';
 
 const QuestionsPage = () => {
   const { childrenData, addChild, updateChild, deleteChild } = useChild();
-  const [children, setChildren] = useState(childrenData);
   const [selectedChild, setSelectedChild] = useState(null);
   const [addingChild, setAddingChild] = useState(false);
   const [editingChild, setEditingChild] = useState(null);
 
-  const updateAnswer = (childName, question, answer) => {
-    setChildren(children.map(child => 
-      child.name === childName 
-        ? { ...child, questions: child.questions.map(q => q.question === question ? { ...q, answer } : q) }
-        : child
-    ));
+  useEffect(() => {
+    // Fetch children data from Firestore when component mounts
+    // Here, you'd use a hook or function to fetch data based on the current user
+  }, []);
+
+  const updateAnswer = (question, answer) => {
+    const updatedQuestions = selectedChild.questions.map(q => 
+      q.question === question ? { ...q, answer } : q
+    );
+
+    updateChild(selectedChild.id, { ...selectedChild, questions: updatedQuestions });
+    setSelectedChild({ ...selectedChild, questions: updatedQuestions });
   };
 
   return (

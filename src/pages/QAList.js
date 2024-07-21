@@ -1,54 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import '../styles/qalist.css';
+import React from 'react';
+import "../styles/QAlistUser.css"
 
 const QAList = ({ questions, updateAnswer, childName }) => {
-  const [tempAnswers, setTempAnswers] = useState(() => {
-    const savedAnswers = localStorage.getItem(childName + 'Answers');
-    return savedAnswers ? JSON.parse(savedAnswers) : questions.reduce((acc, question) => {
-      acc[question.question] = question.answer || '';
-      return acc;
-    }, {});
-  });
-
-  useEffect(() => {
-    localStorage.setItem(childName + 'Answers', JSON.stringify(tempAnswers));
-  }, [tempAnswers, childName]);
-
-  const handleAnswerChange = (question, newAnswer) => {
-    setTempAnswers(prevAnswers => ({
-      ...prevAnswers,
-      [question]: newAnswer
-    }));
-  };
-  
-  const submitAnswer = (question) => {
-    updateAnswer(childName, question, tempAnswers[question]);
-  };
-
   return (
-    <div className="qa-container">
-      <h2 className="qa-header">Questions and Answers for {childName}</h2>
-      <ul className="qa-list">
-        {questions.map((qa, index) => (
-          <li key={index} className="qa-item">
-            <strong className="qa-question">{qa.question}</strong>
-            <input 
-              type="text" 
-              className="qa-input" 
-              value={tempAnswers[qa.question] || ''} 
-              onChange={(e) => handleAnswerChange(qa.question, e.target.value)} 
-            />
-          </li>
-        ))}
-            <div className="qa-btns">
-            <button 
-              className="qa-button"
-              onClick={() => submitAnswer()}
-            >
-              Submit Answer
-            </button>
-            </div>
-      </ul>
+    <div className="qa-list">
+      <h2>{childName}'s Questions</h2>
+      {questions.map((q, index) => (
+        <div key={index} className="question-item">
+          <h3 className="question-text">{q.question}</h3>
+          <div className="options-container">
+            {q.options.map((option, idx) => (
+              <label key={idx} className="option-label">
+                <input
+                  type="radio"
+                  name={`question-${index}`}
+                  value={option}
+                  checked={q.answer === option}
+                  onChange={() => updateAnswer(q.question, option)}
+                />
+                <span className="option-text">{option}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
