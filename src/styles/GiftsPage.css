@@ -15,6 +15,9 @@
   flex-wrap: wrap;
   gap: 20px;
 }
+.gifts-header{
+  text-align: center;
+}
 
 .child-list {
   flex: 1;

@@ -8,9 +8,8 @@ import AddGiftForm from './AddGiftForm';
 import EditGiftForm from './EditGiftForm';
 import InvetationForom from "../InvetationPages/InvetationForom";
 import productsData from '../../assets/products.json'; 
-import { firestore,app } from '../../firebase/firebase';
+import { firestore } from '../../firebase/firebase';
 import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where } from 'firebase/firestore';
-
 
 const GiftsPage = () => {
   const { childrenData } = useChild(); 
@@ -28,7 +27,6 @@ const GiftsPage = () => {
   // Function to fetch AI suggested product IDs
   const getAiSuggestedProductIds = async () => {
     try {
-      // Replace with your actual API endpoint and data structure
       const response = await axios.post('http://localhost:4000/suggest-products', { answers: selectedChild?.answers || {} });
       return response.data.suggestedProductIds.split(',').map(id => id.trim());
     } catch (error) {
@@ -70,7 +68,6 @@ const GiftsPage = () => {
     setAddingGift(false);
     setView('list');
   };
-  
 
   const deleteGift = async (childName, giftId) => {
     const updatedChildren = children.map(child => 
@@ -86,8 +83,6 @@ const GiftsPage = () => {
       gifts: updatedChildren.find(child => child.name === childName).gifts
     });
   };
-  
-  
 
   const updateGift = async (childName, updatedGift) => {
     const updatedChildren = children.map(child => 
@@ -104,8 +99,6 @@ const GiftsPage = () => {
     
     setEditingGift(null);
   };
-  
-  
 
   return (
     <div className="gifts-page">
@@ -119,11 +112,21 @@ const GiftsPage = () => {
             <>
               <div className="view-switcher">
                 <button className="btn" onClick={() => setView('add')}>Add Gift</button>
+                <button className="btn" onClick={() => setView('addedgifts')}>Child's Gift</button>
                 <button className="btn" onClick={() => setView('list')}>Suggesting Gifts</button>
                 <button className="btn" onClick={() => setView('list')}>The child will love</button>
               </div>
-              {view === 'list' && (
-                <>
+          
+              {view === 'add' && (
+                <AddGiftForm 
+                  addGift={addGift} 
+                  setAddingGift={setAddingGift} 
+                  childName={selectedChild?.name}
+                />
+              )}
+
+              {
+                view === 'addedgifts' && (
                   <GiftList
                     className='gift'
                     gifts={selectedChild?.gifts || []} // Ensure gifts is an array
@@ -131,25 +134,24 @@ const GiftsPage = () => {
                     setEditingGift={setEditingGift} 
                     childName={selectedChild?.name}
                   />
+                )
+              }
+
+              {view === 'list' && (
+                <>
                   {suggestedGifts.length > 0 && (
                     <div className="suggested-gifts">
-                      <h3>Suggested Gifts</h3>
+                      <h3 className='gifts-header'>Suggested Gifts</h3>
                       <GiftList
                         gifts={suggestedGifts}
                         deleteGift={deleteGift}
                         setEditingGift={setEditingGift}
                         childName={selectedChild?.name}
+                        isSuggested={true}
                       />
                     </div>
                   )}
                 </>
-              )}
-              {view === 'add' && (
-                <AddGiftForm 
-                  addGift={addGift} 
-                  setAddingGift={setAddingGift} 
-                  childName={selectedChild?.name}
-                />
               )}
             </>
           )}
@@ -202,5 +204,3 @@ const GiftsPage = () => {
 };
 
 export default GiftsPage;
-;
-

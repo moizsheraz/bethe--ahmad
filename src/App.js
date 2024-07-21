@@ -22,6 +22,12 @@ function App() {
     const userInfo = localStorage.getItem('user-info');
     return userInfo ? JSON.parse(userInfo) : null;
   });
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user-info');
+    if (storedUser) {
+      setCurrentUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   const handleLogin = (user) => {
     setCurrentUser(user);

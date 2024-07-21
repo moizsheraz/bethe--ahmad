@@ -5,7 +5,8 @@
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/884920145016_1.jpg?v=1717085678&width=1000",
     "isLiked": false,
-    "price": 19.99
+    "price": 19.99,
+    "categories":["Toys", "Kids' Toys", "Children's Toys"]
   },
   {
     "id": 2,
