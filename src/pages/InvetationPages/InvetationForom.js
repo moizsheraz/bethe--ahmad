@@ -6,7 +6,7 @@ import { firestore } from '../../firebase/firebase';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import './InvitationForm.css'; 
 
-const InvitationForm = ({ listOfGifts, childName, childId }) => {
+const InvitationForm = ({ listOfGifts, childName, childId, friends }) => {
     const [invitation, setInvitation] = useState({
         name: childName,
         age: '',
@@ -24,18 +24,21 @@ const InvitationForm = ({ listOfGifts, childName, childId }) => {
 
         const invitationData = {
             ...invitation,
-            date: invitation.mydate.toISOString().split('T')[0]
+            date: invitation.mydate ? invitation.mydate.toISOString().split('T')[0] : '',
+            list: listOfGifts // Include gifts in the invitation data
         };
 
-        // Assuming you have a child ID of the invitee (the child being invited)
-        const inviteeChildId = "child2Id"; // Replace this with the actual ID of the invitee
-
-        const childRef = doc(firestore, 'children', inviteeChildId);
-        await updateDoc(childRef, {
-            invitations: arrayUnion(invitationData)
-        });
-
-        navigate(`/invitation/${childName}`, { state: invitation });
+        try {
+            for (const friendId of friends) {
+                const childRef = doc(firestore, 'children', friendId);
+                await updateDoc(childRef, {
+                    invitations: arrayUnion(invitationData)
+                });
+            }
+            navigate(`/invitation/${childName}`, { state: invitation });
+        } catch (error) {
+            console.error('Error sending invitations:', error);
+        }
     };
 
     return (

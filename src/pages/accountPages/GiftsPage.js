@@ -6,9 +6,8 @@ import ChildList from './ChildList';
 import GiftList from './GiftList';
 import AddGiftForm from './AddGiftForm';
 import EditGiftForm from './EditGiftForm';
-import InvitationForm from "../InvetationPages/InvetationForom";
+import InvitationForm from "../InvetationPages/InvetationForom"; // Corrected the path
 import AddFriendForm from './AddFriendForm';
-import Calendar from './Calendar';
 import productsData from '../../assets/products.json'; 
 import { firestore } from '../../firebase/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
@@ -115,30 +114,6 @@ const GiftsPage = () => {
     setAddingFriend(false);
   };
 
-  const addEvent = async (childName, event) => {
-    const updatedChildren = children.map(child =>
-      child.name === childName ? { ...child, events: [...child.events, event] } : child
-    );
-    setChildren(updatedChildren);
-
-    const childRef = doc(firestore, 'children', selectedChild.id);
-    await updateDoc(childRef, {
-      events: updatedChildren.find(child => child.name === childName).events
-    });
-  };
-
-  const deleteEvent = async (childName, eventId) => {
-    const updatedChildren = children.map(child =>
-      child.name === childName ? { ...child, events: child.events.filter(event => event.id !== eventId) } : child
-    );
-    setChildren(updatedChildren);
-
-    const childRef = doc(firestore, 'children', selectedChild.id);
-    await updateDoc(childRef, {
-      events: updatedChildren.find(child => child.name === childName).events
-    });
-  };
-
   return (
     <div className="gifts-page">
       <h1 className="page-title">Manage Gifts</h1>
@@ -153,7 +128,6 @@ const GiftsPage = () => {
                 <button className="btn" onClick={() => setView('add')}>Add Gift</button>
                 <button className="btn" onClick={() => setView('addedgifts')}>Child's Gift</button>
                 <button className="btn" onClick={() => setView('list')}>Suggesting Gifts</button>
-                <button className="btn" onClick={() => setView('calendar')}>Calendar</button>
               </div>
 
               {view === 'add' && (
@@ -189,15 +163,6 @@ const GiftsPage = () => {
                     </div>
                   )}
                 </>
-              )}
-
-              {view === 'calendar' && (
-                <Calendar 
-                  childName={selectedChild.name} 
-                  addEvent={addEvent}
-                  deleteEvent={deleteEvent}
-                  events={selectedChild.events}
-                />
               )}
 
               <button className="btn" onClick={() => setAddingFriend(true)}>Add Friend</button>
@@ -257,6 +222,7 @@ const GiftsPage = () => {
               listOfGifts={selectedChild.gifts || []}
               childName={selectedChild.name} 
               childId={selectedChild.id}
+              friends={selectedChild.friends}  // Pass the friends list
             />
           </div>
         </div>

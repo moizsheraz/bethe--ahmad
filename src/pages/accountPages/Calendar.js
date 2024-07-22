@@ -1,47 +1,101 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../../styles/calendar.css';
+import { useChild } from '../context/ChildContext';
+import { firestore } from '../../firebase/firebase';
+import { doc, updateDoc } from 'firebase/firestore';
+import ChildList from './ChildList';
 
-const CalendarComponent = ({ childName, events = [], addEvent, updateEvent, deleteEvent }) => {
-  const [date, setDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(null);
+const CalendarComponent = () => {
+  const { childrenData } = useChild();
+  const [children, setChildren] = useState(childrenData.map(child => ({
+    ...child,
+    gifts: child.gifts || [],
+    friends: child.friends || [],
+    invitations: child.invitations || [],
+    events: child.events || []
+  })));
+  const [selectedChild, setSelectedChild] = useState(null);
+  const [value, onChange] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [eventName, setEventName] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [editingEvent, setEditingEvent] = useState(null);
 
-  const handleDateChange = (date) => {
-    setDate(date);
-    setSelectedDate(date);
-  };
-
   const openModal = (event = null) => {
     if (event) {
       setEventName(event.name);
       setEventDescription(event.description);
-      setSelectedDate(new Date(event.date));
       setEditingEvent(event);
+    } else {
+      setEventName('');
+      setEventDescription('');
+      setEditingEvent(null);
     }
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setEventName('');
-    setEventDescription('');
-    setEditingEvent(null);
+  };
+
+  const addEvent = async (childId, event) => {
+    const updatedChildren = children.map(child =>
+      child.id === childId ? { ...child, events: [...child.events, event] } : child
+    );
+    setChildren(updatedChildren);
+
+    const childRef = doc(firestore, 'children', childId);
+    await updateDoc(childRef, {
+      events: updatedChildren.find(child => child.id === childId).events
+    });
+  };
+
+  const deleteEvent = async (childId, eventId) => {
+    const updatedChildren = children.map(child =>
+      child.id === childId ? { ...child, events: child.events.filter(event => event.id !== eventId) } : child
+    );
+    setChildren(updatedChildren);
+
+    const childRef = doc(firestore, 'children', childId);
+    await updateDoc(childRef, {
+      events: updatedChildren.find(child => child.id === childId).events
+    });
   };
 
   const handleAddOrUpdateEvent = () => {
-    if (eventName && eventDescription && selectedDate) {
+    if (eventName && eventDescription) {
+      const event = {
+        id: editingEvent ? editingEvent.id : Date.now(),
+        date: value.toISOString(),
+        name: eventName,
+        description: eventDescription
+      };
       if (editingEvent) {
-        updateEvent(childName, { ...editingEvent, date: selectedDate, name: eventName, description: eventDescription });
+        updateEvent(selectedChild.id, event);
       } else {
-        addEvent(childName, { id: Date.now(), date: selectedDate, name: eventName, description: eventDescription });
+        addEvent(selectedChild.id, event);
       }
       closeModal();
     }
+  };
+
+  const updateEvent = (childId, updatedEvent) => {
+    const updatedChildren = children.map(child =>
+      child.id === childId
+        ? {
+            ...child,
+            events: child.events.map(event => (event.id === updatedEvent.id ? updatedEvent : event))
+          }
+        : child
+    );
+    setChildren(updatedChildren);
+
+    const childRef = doc(firestore, 'children', childId);
+    updateDoc(childRef, {
+      events: updatedChildren.find(child => child.id === childId).events
+    });
   };
 
   const shareEvent = (event) => {
@@ -54,25 +108,58 @@ const CalendarComponent = ({ childName, events = [], addEvent, updateEvent, dele
 
   return (
     <div className="calendar-page">
-      <h1 className="page-title">Calendar for {childName}</h1>
-      <div className="calendar-container">
-        <Calendar onChange={handleDateChange} value={date} />
+      <div className="child-list">
+        <ChildList children={children} setSelectedChild={setSelectedChild} />
       </div>
-      <button className="add-event-button" onClick={() => openModal()} disabled={!selectedDate}>
-        Add Event
-      </button>
-      <div className="events-list">
-        {events.map((event, index) => (
-          <div key={index} className="event-card">
-            <p><strong>{new Date(event.date).toDateString()}</strong></p>
-            <p>{event.name}</p>
-            <p>{event.description}</p>
-            <button className="share-button" onClick={() => shareEvent(event)}>Share Event</button>
-            <button onClick={() => openModal(event)}>Edit</button>
-            <button onClick={() => deleteEvent(childName, event.id)}>Delete</button>
+      {selectedChild && (
+        <>
+          <h1 className="page-title">Calendar for {selectedChild.name}</h1>
+          <div className="calendar-container">
+            <Calendar onChange={onChange} value={value} />
           </div>
-        ))}
-      </div>
+          <button className="add-event-button" onClick={() => openModal()} disabled={!value}>
+            Add Event
+          </button>
+          <div className="events-list">
+            {selectedChild.events.map((event, index) => (
+              <div key={index} className="event-card">
+                <p><strong>{new Date(event.date).toDateString()}</strong></p>
+                <p>{event.name}</p>
+                <p>{event.description}</p>
+                <button className="share-button" onClick={() => shareEvent(event)}>Share Event</button>
+                <button 
+  style={{
+    backgroundColor: 'red', 
+    color: 'white', 
+    border: 'none', 
+    padding: '10px', 
+    borderRadius: '5px', 
+    cursor: 'pointer',
+    marginRight: '10px'
+  }} 
+  onClick={() => deleteEvent(selectedChild.id, event.id)}
+>
+  Delete
+</button>
+<button 
+  style={{
+    backgroundColor: 'blue', 
+    color: 'white', 
+    border: 'none', 
+    padding: '10px', 
+    borderRadius: '5px', 
+    cursor: 'pointer'
+  }} 
+  onClick={() => openModal(event)}
+>
+  Edit
+</button>
+
+              </div>
+            ))}
+          </div>
+        </>
+      )}
 
       {isModalOpen && (
         <div className={`modal ${isModalOpen ? 'open' : ''}`}>

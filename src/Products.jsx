@@ -2,21 +2,41 @@ import React, { useEffect, useState } from 'react';
 import productData from './assets/products.json';
 import './styles/Products.css';
 import ProductCard from './Product';
+import { firestore } from './firebase/firebase'; 
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [priceFilter, setPriceFilter] = useState('');
 
-  useEffect(() => {
-    setProducts(productData);
-  }, []);
-
   const [likedProducts, setLikedProducts] = useState([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
 
-  const toggleLike = (id) => {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setProducts(productData);
+
+      const userInfo = JSON.parse(localStorage.getItem('user-info'));
+      if (userInfo) {
+        const userDocRef = doc(firestore, 'users', userInfo.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          const likedProductIds = userDoc.data().likedProducts || [];
+          const updatedProducts = productData.map(product =>
+            likedProductIds.includes(product.id) ? { ...product, isLiked: true } : product
+          );
+          setProducts(updatedProducts);
+          setLikedProducts(updatedProducts.filter(product => likedProductIds.includes(product.id)));
+        }
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const toggleLike = async (id) => {
     const updatedProducts = products.map(product =>
       product.id === id ? { ...product, isLiked: !product.isLiked } : product
     );
@@ -24,14 +44,31 @@ function Products() {
 
     const likedProduct = updatedProducts.find(product => product.id === id);
 
+    let updatedLikedProducts;
     if (likedProduct.isLiked) {
-      setLikedProducts([...likedProducts, likedProduct]);
+      updatedLikedProducts = [...likedProducts, likedProduct];
       setSnackbarMessage(`You have liked ${likedProduct.name}`);
     } else {
-      setLikedProducts(likedProducts.filter(product => product.id !== id));
+      updatedLikedProducts = likedProducts.filter(product => product.id !== id);
       setSnackbarMessage(`You have unliked ${likedProduct.name}`);
     }
+    setLikedProducts(updatedLikedProducts);
     setSnackbarOpen(true);
+
+    const userInfo = JSON.parse(localStorage.getItem('user-info'));
+    if (userInfo) {
+      const userDocRef = doc(firestore, 'users', userInfo.uid);
+      const likedProductIds = updatedLikedProducts.map(product => product.id);
+
+      try {
+        await updateDoc(userDocRef, {
+          likedProducts: likedProductIds
+        });
+        console.log('Liked products updated successfully');
+      } catch (error) {
+        console.error('Error updating liked products: ', error);
+      }
+    }
   };
 
   const handleCloseSnackbar = () => {

@@ -6,6 +6,8 @@ import AddChildForm from './accountPages/AddChildForm';
 import EditChildForm from './accountPages/EditChildForm';
 import '../styles/questionPage.css';
 
+// Utility function to calculate age from DOB
+
 const QuestionsPage = () => {
   const { childrenData, addChild, updateChild, deleteChild } = useChild();
   const [selectedChild, setSelectedChild] = useState(null);
@@ -24,6 +26,17 @@ const QuestionsPage = () => {
 
     updateChild(selectedChild.id, { ...selectedChild, questions: updatedQuestions });
     setSelectedChild({ ...selectedChild, questions: updatedQuestions });
+  };
+
+  const handleAddChild = (newChild) => {
+    // Ensure DOB is not in the future
+    if (new Date(newChild.dob) > new Date()) {
+      alert('Date of Birth cannot be in the future.');
+      return;
+    }
+    
+    addChild(newChild);
+    setAddingChild(false);
   };
 
   return (
@@ -45,6 +58,7 @@ const QuestionsPage = () => {
               questions={selectedChild.questions} 
               updateAnswer={updateAnswer} 
               childName={selectedChild.name}
+            
             />
           )}
         </div>
@@ -53,7 +67,10 @@ const QuestionsPage = () => {
       {addingChild && (
         <div className="modal-overlay" onClick={() => setAddingChild(false)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <AddChildForm addChild={addChild} setAddingChild={setAddingChild} />
+            <AddChildForm 
+              addChild={handleAddChild} 
+              setAddingChild={setAddingChild} 
+            />
           </div>
         </div>
       )}

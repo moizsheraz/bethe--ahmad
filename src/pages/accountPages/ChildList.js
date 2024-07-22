@@ -4,27 +4,23 @@ import '../../styles/childList.css';
 const ChildList = ({ children, setSelectedChild }) => {
   // Function to calculate age from Date of Birth
   const calculateAge = (dob) => {
-    const dobDate = new Date(dob);
     const today = new Date();
+    const birthDate = new Date(dob);
 
-    // Log dates for debugging
-    console.log('DOB Date:', dobDate);
-    console.log('Today:', today);
-
-    // Check if the dobDate is valid
-    if (isNaN(dobDate.getTime())) {
-      console.error('Invalid Date:', dob);
-      return 'Invalid Date';
+    // Check for invalid date
+    if (isNaN(birthDate.getTime())) {
+      console.error("Invalid Date:", dob);
+      return "Invalid Date";
     }
 
-    let age = today.getFullYear() - dobDate.getFullYear();
-    const monthDifference = today.getMonth() - dobDate.getMonth();
-
-    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dobDate.getDate())) {
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
 
-    return age;
+    // Return "Below 1" if the age is less than 1
+    return age < 1 ? "Below 1" : age;
   };
 
   return (
