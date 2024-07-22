@@ -24,7 +24,7 @@ const ChildList = ({ children, setSelectedChild }) => {
   };
 
   return (
-    <div className="child-list-container">
+    <div className="child-list-container  checking">
       <h2>Children List</h2>
       <div className="child-list">
         <div className="child-list-headings">
