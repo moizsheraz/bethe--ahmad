@@ -6,8 +6,6 @@ import AddChildForm from './accountPages/AddChildForm';
 import EditChildForm from './accountPages/EditChildForm';
 import '../styles/questionPage.css';
 
-// Utility function to calculate age from DOB
-
 const QuestionsPage = () => {
   const { childrenData, addChild, updateChild, deleteChild } = useChild();
   const [selectedChild, setSelectedChild] = useState(null);
@@ -58,7 +56,6 @@ const QuestionsPage = () => {
               questions={selectedChild.questions} 
               updateAnswer={updateAnswer} 
               childName={selectedChild.name}
-            
             />
           )}
         </div>

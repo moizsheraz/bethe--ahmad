@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import productData from './assets/products.json';
 import './styles/Products.css';
 import ProductCard from './Product';
-import { firestore } from './firebase/firebase'; 
+import { firestore } from './firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [priceFilter, setPriceFilter] = useState('');
-
+  const [categoryFilter, setCategoryFilter] = useState('');
   const [likedProducts, setLikedProducts] = useState([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -83,10 +83,15 @@ function Products() {
     setPriceFilter(event.target.value);
   };
 
+  const handleCategoryFilter = (event) => {
+    setCategoryFilter(event.target.value);
+  };
+
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesPrice = priceFilter ? product.price <= priceFilter : true;
-    return matchesSearch && matchesPrice;
+    const matchesCategory = categoryFilter ? product.category.includes(categoryFilter) : true;
+    return matchesSearch && matchesPrice && matchesCategory;
   });
 
   return (
@@ -104,6 +109,13 @@ function Products() {
           <option value="20">Up to $20</option>
           <option value="30">Up to $30</option>
           <option value="60">Up to $60</option>
+        </select>
+        <select className="category-filter price-filter" value={categoryFilter} onChange={handleCategoryFilter}>
+          <option value="">Filter by category</option>
+          <option value="Dolls">Dolls</option>
+          <option value="Games">Games</option>
+          <option value="Books">Books</option>
+          {/* Add more categories as needed */}
         </select>
       </div>
       <div className="product-cards">

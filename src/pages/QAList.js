@@ -9,18 +9,27 @@ const QAList = ({ questions, updateAnswer, childName }) => {
         <div key={index} className="question-item">
           <h3 className="question-text">{q.question}</h3>
           <div className="options-container">
-            {q.options.map((option, idx) => (
-              <label key={idx} className="option-label">
-                <input
-                  type="radio"
-                  name={`question-${index}`}
-                  value={option}
-                  checked={q.answer === option}
-                  onChange={() => updateAnswer(q.question, option)}
-                />
-                <span className="option-text">{option}</span>
-              </label>
-            ))}
+            {q.options.length > 0 ? (
+              q.options.map((option, idx) => (
+                <label key={idx} className="option-label">
+                  <input
+                    type="radio"
+                    name={`question-${index}`}
+                    value={option}
+                    checked={q.answer === option}
+                    onChange={() => updateAnswer(q.question, option)}
+                  />
+                  <span className="option-text">{option}</span>
+                </label>
+              ))
+            ) : (
+              <textarea
+                name={`question-${index}`}
+                value={q.answer}
+                onChange={(e) => updateAnswer(q.question, e.target.value)}
+                placeholder="Type your answer here"
+              />
+            )}
           </div>
         </div>
       ))}

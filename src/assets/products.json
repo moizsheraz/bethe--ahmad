@@ -1,147 +1,554 @@
 [
   {
     "id": 1,
+    "name": "Welkin - Master Architect Strategy Board Game",
+    "description": "Welkin - Master Architect Strategy Board Game",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/3760008427779_1.jpg?v=1717032138&width=1000",
+    "isLiked": false,
+    "category": ["Board Game"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "15.99"
+  },
+  {
+    "id": 2,
+    "name": "Dream Runners Strategy Board Game",
+    "description": "Dream Runners Strategy Board Game",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/3760008428547_1.jpg?v=1717032154&width=1000",
+    "isLiked": false,
+    "category": ["Board Game"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "16.99"
+  },
+  {
+    "id": 3,
+    "name": "Dragon Parks Fantasy Drafting Board Game",
+    "description": "Dragon Parks Fantasy Drafting Board Game",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/3760008428899_1.jpg?v=1717032159&width=1000",
+    "isLiked": false,
+    "category": ["Board Game"],
+    "age": ["10-12","12-16"],
+    "price": "24.99"
+  },
+  {
+    "id": 4,
+    "name": "4D Master XXRAY Vinyl Art Figure - 7 Inch Harley Quinn Dissected Collectible",
+    "description": "4D Master XXRAY Vinyl Art Figure - 7 Inch Harley Quinn Dissected Collectible",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/641489934471_1.jpg?v=1717090881&width=1000",
+    "isLiked": false,
+    "category": ["Action Figures & Playsets","Arts & Crafts"],
+    "age": ["3-6","6-10"],
+    "price": "27.99"
+  },
+  {
+    "id": 5,
+    "name": "4D XXRAY DC Justice League 9.5 Inch Collectible Batman Action Figure",
+    "description": "4D XXRAY DC Justice League 9.5 Inch Collectible Batman Action Figure",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/641489934679_1.jpg?v=1717090875&width=1000",
+    "isLiked": false,
+    "category": ["Action Figures & Playsets"],
+    "age": ["3-6","6-10"],
+    "price": "89.99"
+  },
+  {
+    "id": 6,
+    "name": "4D Master Full Skeleton Frog Model Anatomy Kit",
+    "description": "4D Master Full Skeleton Frog Model Anatomy Kit",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/4893409267220_1.jpg?v=1717090824&width=1000",
+    "isLiked": false,
+    "category": ["Educational"],
+    "age": ["3-6","6-10"],
+    "price": "25.99"
+  },
+  {
+    "id": 7,
+    "name": "4D Master Vision - Full Skeleton Dog Model - Educational Anatomy Kit",
+    "description": "4D Master Vision - Full Skeleton Dog Model - Educational Anatomy Kit",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/4893409267213_1.jpg?v=1717090821&width=1000",
+    "isLiked": false,
+    "category": ["Educational"],
+    "age": ["10-12","12-16"],
+    "price": "25.99"
+  },
+  {
+    "id": 8,
+    "name": "4D Master Triceratops Anatomy Model - Detailed Dinosaur Learning Kit",
+    "description": "4D Master Triceratops Anatomy Model - Detailed Dinosaur Learning Kit",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/4893409266520_1.jpg?v=1717090816&width=1000",
+    "isLiked": false,
+    "category": ["Learning & Developmental Toys"],
+    "age": ["3-6","6-10"],
+    "price": "99.99"
+  },
+  {
+    "id": 9,
+    "name": "4D Master Velociraptor Anatomy Model Kit",
+    "description": "4D Master Velociraptor Anatomy Model Kit",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/4893409266544_1.jpg?v=1717090827&width=1000",
+    "isLiked": false,
+    "category": ["Educational"],
+    "age": ["6-10","10-12"],
+    "price": "99.99"
+  },
+  {
+    "id": 10,
+    "name": "4D Master Tiger Anatomy Model Educational Kit",
+    "description": "4D Master Tiger Anatomy Model Educational Kit",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/4893409261051_1.jpg?v=1717090805&width=1000",
+    "isLiked": false,
+    "category": ["Educational"],
+    "age": ["3-6","6-10","10-12"],
+    "price": "35.99"
+  },
+  {
+    "id": 11,
+    "name": "4D Master Frog Anatomy Model Educational Science Kit",
+    "description": "4D Master Frog Anatomy Model Educational Science Kit",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/4893409261044_1.jpg?v=1717090800&width=1000",
+    "isLiked": false,
+    "category": ["Educational"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "35.99"
+  },
+  {
+    "id": 12,
+    "name": "4D Master Golden Retriever Anatomy Model - Educational Toy",
+    "description": "4D Master Golden Retriever Anatomy Model - Educational Toy",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/4893409260122_1.jpg?v=1717090791&width=1000",
+    "isLiked": false,
+    "category": ["Educational"],
+    "age": ["3-6","6-10","10-12"],
+    "price": "35.99"
+  },
+  {
+    "id": 13,
+    "name": "Be Good Company - 4D Vision Orange Cat Anatomy Model - Educational Toy",
+    "description": "Be Good Company - 4D Vision Orange Cat Anatomy Model - Educational Toy",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/4893409260085_1.jpg?v=1717090789&width=1000",
+    "isLiked": false,
+    "category": ["Educational"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "35.99"
+  },
+  {
+    "id": 14,
+    "name": "Cascadia Strategy Board Game by Alderac Entertainment Group",
+    "description": "Cascadia Strategy Board Game by Alderac Entertainment Group",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/729220070982.jpg?v=1717081706&width=1000",
+    "isLiked": false,
+    "category": ["Board Game"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "39.99"
+  },
+  {
+    "id": 15,
+    "name": "Sheepy Time Family Board Game - Dream & Nightmare Edition",
+    "description": "Sheepy Time Family Board Game - Dream & Nightmare Edition",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/729220070968_1.jpg?v=1717081694&width=1000",
+    "isLiked": false,
+    "category": ["Board Game"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "19.99"
+  },
+  {
+    "id": 16,
+    "name": "Space Base: Command Station Expansion Board Game",
+    "description": "Space Base: Command Station Expansion Board Game",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/729220070647_1.jpg?v=1717081642&width=1000",
+    "isLiked": false,
+    "category": ["Board Game"],
+    "age": ["3-6","6-10","10-12","12-16"],
+    "price": "39.99"
+  },
+  {
+    "id": 17,
+    "name": "Point Salad Strategic Card Game by Alderac Entertainment Group",
+    "description": "Point Salad Strategic Card Game by Alderac Entertainment Group",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/729220070593_1.jpg?v=1717081647&width=1000",
+    "isLiked": false,
+    "category": ["Board Game"],
+    "age": ["3-6","6-10","10-12","12-16"],
+    "price": "24.99"
+  },
+  {
+    "id": 18,
+    "name": "AEG Thunderstone Quest: Ripples in Time Expansion Pack",
+    "description": "AEG Thunderstone Quest: Ripples in Time Expansion Pack",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/729220062635_1.jpg?v=1717081590&width=1000",
+    "isLiked": false,
+    "category":["Action Figures & Playsets"],
+    "age": ["3-6","6-10","10-12","12-16"],
+    "price": "39.99"
+  },
+  {
+    "id": 19,
+    "name": "Smash Up: World Tour International Incident Expansion Pack",
+    "description": "Smash Up: World Tour International Incident Expansion Pack",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/729220055163_1.jpg?v=1717081567&width=1000",
+    "isLiked": false,
+    "category":["Action Figures & Playsets"],
+    "age": ["3-6","6-10","10-12","12-16"],
+    "price": "24.99"
+  },
+
+  {
+    "id": 20,
+    "name": "Funko Marvel: POP! What If? Series Vinyl Collectors Set - Multiverse Edition",
+    "description": "Funko Marvel: POP! What If? Series Vinyl Collectors Set - Multiverse Edition",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/847944060703_1.jpg?v=1717100448&width=1000",
+    "isLiked": false,
+    "category":["Action Figures & Playsets"],
+    "age": ["3-6","6-10","10-12","12-16"],
+    "price": "19.99"
+  },
+  {
+    "id": 21,
+    "name": "Exquisite Gaming Sonic the Hedgehog 8\" Cable Guy Device Holder",
+    "description": "Exquisite Gaming Sonic the Hedgehog 8\" Cable Guy Device Holder",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/656165861040_1.jpg?v=1717039363&width=1000",
+    "isLiked": false,
+    "category":["Action Figures & Playsets"],
+    "age": ["3-6","6-10","10-12","12-16"],
+    "price": "24.99"
+  },
+  {
+    "id": 22,
+    "name": "Exquisite Gaming Cable Guy - Claptrap from Borderlands - Device Holder",
+    "description": "Exquisite Gaming Cable Guy - Claptrap from Borderlands - Device Holder",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/812169030954.jpg?v=1717083190&width=1000",
+    "isLiked": false,
+    "category":["Action Figures & Playsets"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "24.99"
+  },
+  {
+    "id": 23,
+    "name": "Antsy Labs Marvel Iron Man Fidget Cube - Collector's Desk Toy",
+    "description": "Antsy Labs Marvel Iron Man Fidget Cube - Collector's Desk Toy",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/845218020729_1.jpg?v=1717083829&width=1000",
+    "isLiked": false,
+    "category":["Action Figures & Playsets"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "11.99"
+  },
+  {
+    "id": 24,
+    "name": "Exquisite Gaming - Deadpool Cable Guy Controller & Device Holder",
+    "description": "Exquisite Gaming - Deadpool Cable Guy Controller & Device Holder",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/656165861200_1.jpg?v=1717039395&width=1000",
+    "isLiked": false,
+    "category":["Action Figures & Playsets"],
+    "age": ["6-10","10-12"],
+    "price": "24.99"
+  },
+  {
+    "id": 25,
+    "name": "Fart - The Explosive Card Game for Family Fun Nights",
+    "description": "Fart - The Explosive Card Game for Family Fun Nights",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/625012007641_1.jpg?v=1717016990&width=1000",
+    "isLiked": false,
+    "category":["Arts & Crafts"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "17.99"
+  },
+  {
+    "id": 26,
+    "name": "Vocabulicious! Educational Conversation Starter Word Game",
+    "description": "Vocabulicious! Educational Conversation Starter Word Game",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/850050863007_1.jpg?v=1717029332&width=1000",
+    "isLiked": false,
+    "category": ["Educational"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "24.99"
+  },
+  {
+    "id": 27,
+    "name": "Funko Pop! Collector's Mystery Blind Pack - 4 Unique Figures (Styles May Vary)",
+    "description": "Funko Pop! Collector's Mystery Blind Pack - 4 Unique Figures (Styles May Vary)",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/847944061748_1.jpg?v=1718302159&width=1000",
+    "isLiked": false,
+    "category": ["Action Figures & Playsets"],
+    "age": ["6-10","10-12"],
+    "price": "19.99"
+  },
+  {
+    "id": 28,
+    "name": "Funko POP! Retro Toys Collectors Set - Classic Games Vinyl Figures",
+    "description": "Funko POP! Retro Toys Collectors Set - Classic Games Vinyl Figures",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/847944061304_1.jpg?v=1718302208&width=1000",
+    "isLiked": false,
+    "category": ["Action Figures & Playsets"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "47.99"
+  },
+  {
+    "id": 29,
+    "name": "Exquisite Gaming - Disney NBX Jack Skellington Controller and Phone Stand",
+    "description": "Exquisite Gaming - Disney NBX Jack Skellington Controller and Phone Stand",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/812169032521_1.jpg?v=1716989893&width=1000",
+    "isLiked": false,
+    "category": ["Action Figures & Playsets"],
+    "age": ["6-10","10-12"],
+    "price": "29.99"
+  },
+  {
+    "id": 30,
+    "name": "Funko POP Ad Icons 5.2 inch Geoffrey with Globe Vinyl Figure",
+    "description": "Funko POP Ad Icons 5.2 inch Geoffrey with Globe Vinyl Figure",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/26043693_fpx.jpg?v=1717517525&width=1000",
+    "isLiked": false,
+    "category": ["Action Figures & Playsets"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "14.99"
+  },
+  {
+    "id": 31,
+    "name": "Antsy Labs Captain America Marvel Series Fidget Cube",
+    "description": "Antsy Labs Captain America Marvel Series Fidget Cube",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/845218020736_1.jpg?v=1717083838&width=1000",
+    "isLiked": false,
+    "category": ["Action Figures & Playsets"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "11.99"
+  },
+  {
+    "id": 32,
+    "name": "Antsy Labs DC Series Superman-Themed Fidget Cube",
+    "description": "Antsy Labs DC Series Superman-Themed Fidget Cube",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/845218020705_1.jpg?v=1717083819&width=1000",
+    "isLiked": false,
+    "category": ["Action Figures & Playsets"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "16.99"
+  },
+  {
+    "id": 33,
+    "name": "Rick and Morty: The Morty Zone Dice Game for 2-4 Players",
+    "description": "Rick and Morty: The Morty Zone Dice Game for 2-4 Players",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/814552028296_1.jpg?v=1717083278&width=1000",
+    "isLiked": false,
+    "category": ["Action Figures & Playsets","Games & Puzzles"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "14.99"
+  },
+  {
+    "id": 34,
+    "name": "Exquisite Gaming Mandalorian 8.5\" Boba Fett Controller & Phone Holder",
+    "description": "Exquisite Gaming Mandalorian 8.5\" Boba Fett Controller & Phone Holder",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/812169032507.jpg?v=1717083257&width=1000",
+    "isLiked": false,
+    "category": ["Action Figures & Playsets"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "24.99"
+  },
+  {
+    "id": 35,
+    "name": "Exquisite Gaming - Marvel Avengers End Game - Black Panther Cable Guy Controller Holder",
+    "description": "Exquisite Gaming - Marvel Avengers End Game - Black Panther Cable Guy Controller Holder",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/812169030329_1.jpg?v=1717083165&width=1000",
+    "isLiked": false,
+    "category": ["Action Figures & Playsets"],
+    "age": ["3-6","6-10","10-12"],
+    "price": "24.99"
+  },
+  {
+    "id": 36,
+    "name": "Pop Culture Trivia Game: Ultimate Celebrity Quiz Edition",
+    "description": "Pop Culture Trivia Game: Ultimate Celebrity Quiz Edition",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/625012133524_1.jpg?v=1717038513&width=1000",
+    "category": ["Board Game","Games & Puzzles"],
+    "isLiked": false,
+    "age": ["3-6","6-10","10-12"],
+    "price": "14.99"
+  },
+  {
+    "id": 37,
+    "name": "Pickles to Penguins! Quick-Thinking Card Matching Game",
+    "description": "Pickles to Penguins! Quick-Thinking Card Matching Game",
+    "image": "https://cdn.shopify.com/s/files/1/0675/0476/7192/files/625012102131_1.jpg?v=1717038444&width=1000",
+    "isLiked": false,
+    "category": ["Board Game","Games & Puzzles"],
+    "age": ["3-6","6-10","10-12"],
+    "price": "17.99"
+  },
+  {
+    "id": 38,
     "name": "Cra-Z-Art Vibrant Spinning Art Machine Kit",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/884920145016_1.jpg?v=1717085678&width=1000",
     "isLiked": false,
-    "price": 19.99,
-    "categories":["Toys", "Kids' Toys", "Children's Toys"]
+    "category":["Arts & Crafts"],
+    "age": ["3-6","6-10","10-12"],
+    "price": "19.99"
   },
+
   {
-    "id": 2,
+    "id": 39,
     "name": "Play-Doh Crazy Cuts Stylist Hair Salon Playset with 8 Tri-Color Cans",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/18995380_fpx.jpg?v=1717442800&width=1000",
     "isLiked": false,
-    "price": 15.99
+    "category": ["Educational","Building Sets & Blocks"],
+    "age": ["3-6","6-10","10-12"],
+    "price": "15.99"
   },
   {
-    "id": 3,
+    "id": 40,
     "name": "Toys R Us Happy Together Cottage Dollhouse Playset with Sound Effects",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/22812085_fpx.jpg?v=1717467829&width=1000",
     "isLiked": false,
-    "price": 29.99
+    "category": ["Dolls"],
+    "age": ["3-6","6-10","10-12"],
+    "price": "29.99"
   },
   {
-    "id": 4,
+    "id": 41,
     "name": "Jada Toys Disney Pixar Lightning McQueen 1:24 Scale R/C Crash Car",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/4006333050336_1.jpg?v=1717034163&width=1000",
     "isLiked": false,
-    "price": 24.99
+    "category": ["Playsets & Vehicles","Action Figures & Playsets"],
+    "age": ["3-6","6-10","10-12"],
+    "price": "24.99"
   },
   {
-    "id": 5,
+    "id": 42,
     "name": "Toys R Us Fast Lane 110-Piece Lights & Sounds Construction Playset",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/25639938_fpx.jpg?v=1717528880&width=1000",
     "isLiked": false,
-    "price": 39.99
+    "category" : ["Action Figures & Playsets"],
+    "age": ["6-10","10-12","12-16"],
+    "price": "39.99"
   },
   {
-    "id": 6,
+    "id": 43,
     "name": "Furby Interactive Toy, Vibrant Purple - Voice-Activated Pet",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/25545557_fpx.jpg?v=1717526590&width=1000",
     "isLiked": false,
-    "price": 49.99
+    "category": ["Games & Puzzles"],
+    "age": ["3-6","6-10"],
+    "price": "49.99"
   },
   {
-    "id": 7,
+    "id": 44,
     "name": "Fingerlings Charli Interactive Baby Monkey - Pink, 70+ Sounds & Reactions",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/25630401_fpx.jpg?v=1717517321&width=1000",
     "isLiked": false,
-    "price": 14.99
+    "category": ["Dolls"],
+    "age": ["3-6","6-10"],
+    "price": "14.99"
   },
   {
-    "id": 8,
+    "id": 45,
     "name": "Junior Learning Reading Accelerator Set - Language Arts for Ages 5+",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/856258003030_1.jpg?v=1717084737&width=1000",
     "isLiked": false,
-    "price": 17.99
+    "category":["Arts & Crafts","Learning & Developmental Toys"],
+    "age": ["3-6","6-10"],
+    "price": "17.99"
   },
   {
-    "id": 9,
+    "id": 46,
     "name": "Play-Doh Dino Crew Crunchin' T-Rex Interactive Toy with Sound Effects",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/19001509_fpx.jpg?v=1717442828&width=1000",
     "isLiked": false,
-    "price": 22.99
+    "category":["Dolls"],
+    "age": ["3-6"],
+    "price": "22.99"
   },
   {
-    "id": 10,
+    "id": 47,
     "name": "Soggy Doggy Interactive Bath Time Fun Board Game for Kids",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/22850157_fpx.jpg?v=1717507442&width=1000",
     "isLiked": false,
-    "price": 29.99
+    "category": ["Board Game"],
+    "age": ["3-6"],
+    "price": "29.99"
   },
   {
-    "id": 11,
+    "id": 48,
     "name": "MintID Dog-E Interactive Robot Dog with Unique Personality and POV Tail Communication",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/26145551_fpx.jpg?v=1717517249&width=1000",
     "isLiked": false,
-    "price": 59.99
+    "category":["Dolls"],
+    "age": ["3-6"],
+    "price": "59.99"
   },
   {
-    "id": 12,
+    "id": 49,
     "name": "Fun-to-Know Easy Words Matching Puzzle Game - Educational Toy",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/078628360073_1.jpg?v=1716987632&width=1000",
     "isLiked": false,
-    "price": 9.99
-    },
+    "category": ["Educational","Games & Puzzles"],
+    "age": ["3-6"],
+    "price": "9.99"
+  },
   {
-    "id": 13,
+    "id": 50,
     "name": "Brainstorm Toys T Rex Dinosaur Projector and Room Guard - 24 Prehistoric Images",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/5060122731928_1.jpg?v=1717036742&width=1000",
     "isLiked": false,
-    "price": 19.99
+    "category": ["Action Figures & Playsets"],
+    "age": ["6-10","10-12"],
+    "price": "19.99"
   },
   {
-    "id": 14,
+    "id": 51,
     "name": "Cra-Z-Art Portable 5-in-1 Wooden Tabletop Art Easel Set",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/884920140509_1.jpg?v=1717030802&width=1000",
     "isLiked": false,
-    "price": 34.99
+    "category":["Arts & Crafts"],
+    "age": ["6-10","10-12"],
+    "price": "34.99"
   },
   {
-    "id": 15,
+    "id": 52,
     "name": "Disney Princess Frozen Singing Elsa Doll - Classic Blue Outfit",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/23990599_fpx.jpg?v=1717516396&width=1000",
     "isLiked": false,
-    "price": 24.99
+    "category": ["Dolls"],
+    "age": ["3-6"],
+    "price": "24.99"
   },
   {
-    "id": 16,
+    "id": 53,
     "name": "Play-Doh Care and Carry Vet Set - 17-Piece Interactive Toy Veterinary Kit",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/21555985_fpx.jpg?v=1717472560&width=1000",
     "isLiked": false,
-    "price": 19.99
+    "category": ["Dolls"],
+    "age": ["3-6"],
+    "price": "19.99"
   },
   {
-    "id": 17,
+    "id": 54,
     "name": "Paw Patrol Chase RC Police Cruiser with Easy-to-Use Pup Pad Controller",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/18159021_fpx.jpg?v=1717442408&width=1000",
     "isLiked": false,
-    "price": 29.99
+    "category": ["Dolls"],
+    "age": ["3-6"],
+    "price": "29.99"
   },
   {
-    "id": 18,
+    "id": 55,
     "name": "Skyteam - Backhoe Loader Ride-On - Interactive Construction Toy",
     "description": "This is a great product for children.",
     "image": "https://www.toysrus.com/cdn/shop/files/832061009810_1.jpg?v=1717083569&width=1000",
     "isLiked": false,
-    "price": 49.99
+    "category": ["Dolls"],
+    "age": ["3-6","6-10"],
+    "price": "49.99"
   }
 ]

@@ -5,11 +5,6 @@ const AddChildForm = ({ addChild, setAddingChild }) => {
   const [dob, setDob] = useState('');
   const questions = [
     {
-      question: "What is the age of the child?",
-      answer: '',
-      options: ["3-6", "6-10", "10-12", "12-16"]
-    },
-    {
       question: "What kinds of games does he like to play the most?",
       answer: '',
       options: [
@@ -50,7 +45,6 @@ const AddChildForm = ({ addChild, setAddingChild }) => {
       options: [] 
     }
   ];
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,32 +54,32 @@ const AddChildForm = ({ addChild, setAddingChild }) => {
 
   return (
     <div className="add-child-form">
-    <form onSubmit={handleSubmit} className="form">
-    <div className="form-group">
-      <h2>Add Child</h2>
-      <input
-        type="text"
-        placeholder="Child's Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      </div>
-      <div className='form-group'>
-        <h2>Date of Birth</h2>
-      <input
-        type="date"
-        placeholder="Date of Birth"
-        value={dob}
-        onChange={(e) => setDob(e.target.value)}
-        required
-      />
-      </div>
-      <div className="btns">
-        <button type="submit" >Add Child</button>
-        <button type="button"  onClick={() => setAddingChild(false)}>Cancel</button>
+      <form onSubmit={handleSubmit} className="form">
+        <div className="form-group">
+          <h2>Add Child</h2>
+          <input
+            type="text"
+            placeholder="Child's Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
         </div>
-    </form>
+        <div className='form-group'>
+          <h2>Date of Birth</h2>
+          <input
+            type="date"
+            placeholder="Date of Birth"
+            value={dob}
+            onChange={(e) => setDob(e.target.value)}
+            required
+          />
+        </div>
+        <div className="btns">
+          <button type="submit">Add Child</button>
+          <button type="button" onClick={() => setAddingChild(false)}>Cancel</button>
+        </div>
+      </form>
     </div>
   );
 };
