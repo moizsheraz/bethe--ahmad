@@ -6,25 +6,30 @@ import ChildList from './ChildList';
 import GiftList from './GiftList';
 import AddGiftForm from './AddGiftForm';
 import EditGiftForm from './EditGiftForm';
-import InvetationForom from "../InvetationPages/InvetationForom";
+import InvitationForm from "../InvetationPages/InvetationForom";
+import AddFriendForm from './AddFriendForm';
+import Calendar from './Calendar';
 import productsData from '../../assets/products.json'; 
 import { firestore } from '../../firebase/firebase';
-import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 
 const GiftsPage = () => {
   const { childrenData } = useChild(); 
   const [children, setChildren] = useState(childrenData.map(child => ({
     ...child,
-    gifts: child.gifts || [] // Ensure gifts is always an array
+    gifts: child.gifts || [],
+    friends: child.friends || [],  
+    invitations: child.invitations || [],  
+    events: child.events || []  // Ensure events is always an array
   })));
   const [selectedChild, setSelectedChild] = useState(null);
   const [addingGift, setAddingGift] = useState(false);
   const [editingGift, setEditingGift] = useState(null);
   const [invite, setInvitation] = useState(false);
+  const [addingFriend, setAddingFriend] = useState(false);
   const [view, setView] = useState('list');
   const [suggestedGifts, setSuggestedGifts] = useState([]);
 
-  // Function to fetch AI suggested product IDs
   const getAiSuggestedProductIds = async () => {
     try {
       const response = await axios.post('http://localhost:4000/suggest-products', { answers: selectedChild?.answers || {} });
@@ -35,12 +40,10 @@ const GiftsPage = () => {
     }
   };
 
-  // Function to filter products based on suggested IDs
   const getSuggestedGifts = (ids) => {
     return productsData.filter(product => ids.includes(product.id.toString()));
   };
 
-  // Fetch suggested gifts when selectedChild changes
   useEffect(() => {
     const fetchSuggestedGifts = async () => {
       if (selectedChild) {
@@ -58,8 +61,7 @@ const GiftsPage = () => {
       child.name === childName ? { ...child, gifts: [...child.gifts, gift] } : child
     );
     setChildren(updatedChildren);
-    
-    // Update Firestore
+
     const childRef = doc(firestore, 'children', selectedChild.id);
     await updateDoc(childRef, {
       gifts: updatedChildren.find(child => child.name === childName).gifts
@@ -77,7 +79,6 @@ const GiftsPage = () => {
     );
     setChildren(updatedChildren);
     
-    // Remove gift from Firestore
     const childRef = doc(firestore, 'children', selectedChild.id);
     await updateDoc(childRef, {
       gifts: updatedChildren.find(child => child.name === childName).gifts
@@ -100,6 +101,44 @@ const GiftsPage = () => {
     setEditingGift(null);
   };
 
+  const addFriend = async (childName, friendId) => {
+    const updatedChildren = children.map(child =>
+      child.name === childName ? { ...child, friends: [...child.friends, friendId] } : child
+    );
+    setChildren(updatedChildren);
+
+    const childRef = doc(firestore, 'children', selectedChild.id);
+    await updateDoc(childRef, {
+      friends: updatedChildren.find(child => child.name === childName).friends
+    });
+
+    setAddingFriend(false);
+  };
+
+  const addEvent = async (childName, event) => {
+    const updatedChildren = children.map(child =>
+      child.name === childName ? { ...child, events: [...child.events, event] } : child
+    );
+    setChildren(updatedChildren);
+
+    const childRef = doc(firestore, 'children', selectedChild.id);
+    await updateDoc(childRef, {
+      events: updatedChildren.find(child => child.name === childName).events
+    });
+  };
+
+  const deleteEvent = async (childName, eventId) => {
+    const updatedChildren = children.map(child =>
+      child.name === childName ? { ...child, events: child.events.filter(event => event.id !== eventId) } : child
+    );
+    setChildren(updatedChildren);
+
+    const childRef = doc(firestore, 'children', selectedChild.id);
+    await updateDoc(childRef, {
+      events: updatedChildren.find(child => child.name === childName).events
+    });
+  };
+
   return (
     <div className="gifts-page">
       <h1 className="page-title">Manage Gifts</h1>
@@ -114,9 +153,9 @@ const GiftsPage = () => {
                 <button className="btn" onClick={() => setView('add')}>Add Gift</button>
                 <button className="btn" onClick={() => setView('addedgifts')}>Child's Gift</button>
                 <button className="btn" onClick={() => setView('list')}>Suggesting Gifts</button>
-                <button className="btn" onClick={() => setView('list')}>The child will love</button>
+                <button className="btn" onClick={() => setView('calendar')}>Calendar</button>
               </div>
-          
+
               {view === 'add' && (
                 <AddGiftForm 
                   addGift={addGift} 
@@ -125,17 +164,15 @@ const GiftsPage = () => {
                 />
               )}
 
-              {
-                view === 'addedgifts' && (
-                  <GiftList
-                    className='gift'
-                    gifts={selectedChild?.gifts || []} // Ensure gifts is an array
-                    deleteGift={deleteGift} 
-                    setEditingGift={setEditingGift} 
-                    childName={selectedChild?.name}
-                  />
-                )
-              }
+              {view === 'addedgifts' && (
+                <GiftList
+                  className='gift'
+                  gifts={selectedChild?.gifts || []}
+                  deleteGift={deleteGift}
+                  setEditingGift={setEditingGift}
+                  childName={selectedChild?.name}
+                />
+              )}
 
               {view === 'list' && (
                 <>
@@ -153,6 +190,17 @@ const GiftsPage = () => {
                   )}
                 </>
               )}
+
+              {view === 'calendar' && (
+                <Calendar 
+                  childName={selectedChild.name} 
+                  addEvent={addEvent}
+                  deleteEvent={deleteEvent}
+                  events={selectedChild.events}
+                />
+              )}
+
+              <button className="btn" onClick={() => setAddingFriend(true)}>Add Friend</button>
             </>
           )}
         </div>
@@ -183,6 +231,19 @@ const GiftsPage = () => {
         </div>
       )}
 
+      {addingFriend && selectedChild && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <AddFriendForm 
+              children={children}
+              addFriend={addFriend}
+              setAddingFriend={setAddingFriend}
+              childName={selectedChild?.name}
+            />
+          </div>
+        </div>
+      )}
+
       {selectedChild && (
         <div className="invite-section">
           <button className="btn invite-btn" onClick={() => setInvitation(true)}>Invite Friends</button>
@@ -192,9 +253,10 @@ const GiftsPage = () => {
       {invite && selectedChild && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <InvetationForom 
-              listOfGifts={selectedChild.gifts || []} // Ensure gifts is an array
+            <InvitationForm 
+              listOfGifts={selectedChild.gifts || []}
               childName={selectedChild.name} 
+              childId={selectedChild.id}
             />
           </div>
         </div>

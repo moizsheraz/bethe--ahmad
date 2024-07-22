@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker'; 
 import 'react-datepicker/dist/react-datepicker.css'; 
-import './InvitationForom.css'; 
+import { firestore } from '../../firebase/firebase';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import './InvitationForm.css'; 
 
-const InvitationForm = ({ listOfGifts, childName }) => {
+const InvitationForm = ({ listOfGifts, childName, childId }) => {
     const [invitation, setInvitation] = useState({
         name: childName,
         age: '',
@@ -17,8 +19,22 @@ const InvitationForm = ({ listOfGifts, childName }) => {
 
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const invitationData = {
+            ...invitation,
+            date: invitation.mydate.toISOString().split('T')[0]
+        };
+
+        // Assuming you have a child ID of the invitee (the child being invited)
+        const inviteeChildId = "child2Id"; // Replace this with the actual ID of the invitee
+
+        const childRef = doc(firestore, 'children', inviteeChildId);
+        await updateDoc(childRef, {
+            invitations: arrayUnion(invitationData)
+        });
+
         navigate(`/invitation/${childName}`, { state: invitation });
     };
 
@@ -32,15 +48,6 @@ const InvitationForm = ({ listOfGifts, childName }) => {
                 <div className="invitation-modal-body">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="age">Age</label>
-                            <input
-                                type="text"
-                                id="age"
-                                value={invitation.age}
-                                onChange={(e) => setInvitation({ ...invitation, age: e.target.value })}
-                            />
-                        </div>
-                        <div className="form-group">
                             <label htmlFor="place">Location</label>
                             <input
                                 type="text"
@@ -53,7 +60,7 @@ const InvitationForm = ({ listOfGifts, childName }) => {
                         <div className="form-group">
                             <label>Date</label>
                             <DatePicker
-                            className='date'
+                                className='date'
                                 selected={invitation.mydate} 
                                 onChange={(date) => setInvitation({ ...invitation, mydate: date })}
                                 dateFormat="yyyy-MM-dd"
@@ -80,7 +87,7 @@ const InvitationForm = ({ listOfGifts, childName }) => {
                                 onChange={(e) => setInvitation({ ...invitation, description: e.target.value })}
                             ></textarea>
                         </div>
-                        <div >
+                        <div>
                             <button type="submit">Share Invitation</button>
                         </div>
                     </form>
