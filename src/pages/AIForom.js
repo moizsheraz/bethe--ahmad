@@ -3,7 +3,7 @@ import axios from 'axios';
 import userQuestions from '../assets/questions.json';
 import '../styles/Aiforom.css';
 import ProductCard from '../Product';
-import productsData from '../assets/products.json'; // Assuming you have this file
+import productsData from '../assets/products.json'; 
 
 function SurveyForm() {
   const [questions, setQuestions] = useState([]);
@@ -17,10 +17,21 @@ function SurveyForm() {
   const [searchTerm, setSearchTerm] = useState('');
   const [answers, setAnswers] = useState({}); // To store user's answers
 
-  useEffect(() => {
-    setQuestions(userQuestions);
-  }, []);
+const firstQuestion =  {
+    "id": 1,
+    "title": "What is Your Child's Age",
+    "options": [
+      { "value": "1-5","label": "1-5"},
+      {"value":"5-10","label": "5-10"},
+      {"value":"10-15","label": "10-15"},
+      {"value":"15-20","label": "15-20"},
+    ]
 
+  }
+
+  useEffect(() => {
+    setQuestions([firstQuestion, ...userQuestions]);
+  }, []);
   const handleAnswerChange = (e) => {
     const { name, value } = e.target;
     setAnswers(prevAnswers => ({ ...prevAnswers, [name]: value }));
