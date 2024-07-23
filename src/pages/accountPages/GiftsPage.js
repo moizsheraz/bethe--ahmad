@@ -29,6 +29,7 @@ const GiftsPage = () => {
   const [view, setView] = useState('list');
   const [suggestedGifts, setSuggestedGifts] = useState([]);
 
+
   const getAiSuggestedProductIds = async () => {
     try {
       const response = await axios.post('http://localhost:4000/suggest-products', { answers: selectedChild?.answers || {} });
@@ -114,6 +115,8 @@ const GiftsPage = () => {
     setAddingFriend(false);
   };
 
+
+
   return (
     <div className="gifts-page">
       <h1 className="page-title">Manage Gifts</h1>
@@ -159,6 +162,7 @@ const GiftsPage = () => {
                         setEditingGift={setEditingGift}
                         childName={selectedChild?.name}
                         isSuggested={true}
+                        
                       />
                     </div>
                   )}

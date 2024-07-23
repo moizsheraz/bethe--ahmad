@@ -2,7 +2,6 @@ import React from 'react';
 import '../../styles/childList.css';
 
 const ChildList = ({ children, setSelectedChild }) => {
-  // Function to calculate age from Date of Birth
   const calculateAge = (dob) => {
     const today = new Date();
     const birthDate = new Date(dob);
@@ -13,15 +12,32 @@ const ChildList = ({ children, setSelectedChild }) => {
       return "Invalid Date";
     }
 
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
+    let years = today.getFullYear() - birthDate.getFullYear();
+    let months = today.getMonth() - birthDate.getMonth();
+    let days = today.getDate() - birthDate.getDate();
+
+    // Adjust for negative days or months
+    if (days < 0) {
+      months--;
+      days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    }
+    
+    if (months < 0) {
+      years--;
+      months += 12;
     }
 
-    // Return "Below 1" if the age is less than 1
-    return age < 1 ? "Below 1" : age;
+    if (years > 0) {
+      return `${years} years`;
+    } else if (months > 0) {
+      return `${months} months`;
+    } else if (days >= 0) {
+      return `${days} days`;
+    } else {
+      return "Below 1 day";
+    }
   };
+  
 
   return (
     <div className="child-list-container  checking">
