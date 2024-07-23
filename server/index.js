@@ -20,7 +20,6 @@ const groq = new Groq({
 app.post('/suggest-products', async (req, res) => {
   const answers = req.body;
   try {
-    // Send answers to AI for processing
     const result = await groq.chat.completions.create({
       messages: [
         {
@@ -31,10 +30,30 @@ app.post('/suggest-products', async (req, res) => {
       model: 'llama3-8b-8192'
     });
 
-    // Assuming AI response contains suggested product IDs
     const suggestedProductIds = result.choices[0]?.message.content;
     console.log('Suggested products:', suggestedProductIds);
     res.json({ suggestedProductIds });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/summary', async (req, res) => {
+  const answers = req.body;
+  try {
+    const result = await groq.chat.completions.create({
+      messages: [
+        {
+          role: 'user',
+          content: `Based on these answers: ${JSON.stringify(answers)}, provide a brief 2.5 line summary of the products a child might like from this list: ${JSON.stringify(products)}.Start  your summary with 'Child will like...'. Good luck!`,
+        }
+      ],
+      model: 'llama3-8b-8192'
+    });
+
+    const summary = result.choices[0]?.message.content;
+    console.log('Summary:', summary);
+    res.json({ summary });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

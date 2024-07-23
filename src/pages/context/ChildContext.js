@@ -23,7 +23,7 @@ export const ChildProvider = ({ children }) => {
   useEffect(() => {
     const fetchUserChildren = async () => {
       const user = getUserFromLocalStorage();
-      if (!user) return; // Exit if no user is available
+      if (!user) return; 
       
       const q = query(collection(firestore, 'children'), where('userId', '==', user.uid));
       const querySnapshot = await getDocs(q);

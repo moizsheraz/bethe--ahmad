@@ -13,39 +13,42 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
+  
       const userInfo = {
         uid: user.uid,
         email: user.email,
       };
-
+  
       localStorage.setItem('user-info', JSON.stringify(userInfo));
       navigate('/questions-page');
+      window.location.reload();
     } catch (error) {
       setError('Invalid username or password');
     }
   };
-
+  
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-
+  
       const userInfo = {
         uid: user.uid,
         email: user.email,
       };
-
+  
       localStorage.setItem('user-info', JSON.stringify(userInfo));
       navigate('/questions-page');
+      window.location.reload(); // Reload the page after navigation
     } catch (error) {
       setError(error.message);
     }
   };
+  
 
   return (
     <div className="container">

@@ -6,7 +6,7 @@ import ChildList from './ChildList';
 import GiftList from './GiftList';
 import AddGiftForm from './AddGiftForm';
 import EditGiftForm from './EditGiftForm';
-import InvitationForm from "../InvetationPages/InvetationForom"; // Corrected the path
+import InvitationForm from "../InvetationPages/InvetationForom"; 
 import AddFriendForm from './AddFriendForm';
 import productsData from '../../assets/products.json'; 
 import { firestore } from '../../firebase/firebase';
@@ -28,7 +28,7 @@ const GiftsPage = () => {
   const [addingFriend, setAddingFriend] = useState(false);
   const [view, setView] = useState('list');
   const [suggestedGifts, setSuggestedGifts] = useState([]);
-
+  const [summary, setSummary] = useState(''); 
 
   const getAiSuggestedProductIds = async () => {
     try {
@@ -55,6 +55,17 @@ const GiftsPage = () => {
 
     fetchSuggestedGifts();
   }, [selectedChild]);
+
+  const fetchSummary = async () => {
+    try {
+      const response = await axios.post('http://localhost:4000/summary', selectedChild?.answers || {});
+      const { summary } = response.data;
+      setSummary(summary);
+      setView('summary'); // Set the view to summary
+    } catch (error) {
+      console.error('Error fetching summary:', error);
+    }
+  };
 
   const addGift = async (childName, gift) => {
     const updatedChildren = children.map(child => 
@@ -115,11 +126,9 @@ const GiftsPage = () => {
     setAddingFriend(false);
   };
 
-
-
   return (
     <div className="gifts-page">
-      <h1 className="page-title">Manage Gifts</h1>
+      <h1 className="page-title">Manage Gifts for {selectedChild ? selectedChild.name : ''}</h1> {/* Updated header */}
       <div className="page-content">
         <div className="child-list">
           <ChildList children={children} setSelectedChild={setSelectedChild} />
@@ -131,6 +140,7 @@ const GiftsPage = () => {
                 <button className="btn" onClick={() => setView('add')}>Add Gift</button>
                 <button className="btn" onClick={() => setView('addedgifts')}>Child's Gift</button>
                 <button className="btn" onClick={() => setView('list')}>Suggesting Gifts</button>
+                <button className="btn" onClick={fetchSummary}>Child will like...</button> 
               </div>
 
               {view === 'add' && (
@@ -162,11 +172,17 @@ const GiftsPage = () => {
                         setEditingGift={setEditingGift}
                         childName={selectedChild?.name}
                         isSuggested={true}
-                        
                       />
                     </div>
                   )}
                 </>
+              )}
+
+              {view === 'summary' && summary && ( // Ensure only the summary view is visible
+                <div className="summary-section">
+                  <h3>Child will like...</h3>
+                  <p className="">{summary}</p>
+                </div>
               )}
 
               <button className="btn" onClick={() => setAddingFriend(true)}>Add Friend</button>
