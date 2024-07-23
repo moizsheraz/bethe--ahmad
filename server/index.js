@@ -45,7 +45,7 @@ app.post('/summary', async (req, res) => {
       messages: [
         {
           role: 'user',
-          content: `Based on these answers: ${JSON.stringify(answers)}, provide a brief 2.5 line summary of the products a child might like from this list: ${JSON.stringify(products)}.Start  your summary with 'Child will like...'. Good luck!`,
+          content: `Based on these answers: ${JSON.stringify(answers)}, provide a brief 2.5 line summary of the products a child might like from this list: ${JSON.stringify(products)}.Start  your summary with 'Child will like...'. Good luck! dont add extra text above it `,
         }
       ],
       model: 'llama3-8b-8192'
