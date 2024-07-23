@@ -11,19 +11,24 @@ const QuestionsPage = () => {
   const [selectedChild, setSelectedChild] = useState(null);
   const [addingChild, setAddingChild] = useState(false);
   const [editingChild, setEditingChild] = useState(null);
+  const [localQuestions, setLocalQuestions] = useState([]);
 
   useEffect(() => {
     // Fetch children data from Firestore when component mounts
     // Here, you'd use a hook or function to fetch data based on the current user
   }, []);
 
+  useEffect(() => {
+    if (selectedChild) {
+      setLocalQuestions(selectedChild.questions);
+    }
+  }, [selectedChild]);
+
   const updateAnswer = (question, answer) => {
-    const updatedQuestions = selectedChild.questions.map(q => 
+    const updatedQuestions = localQuestions.map(q => 
       q.question === question ? { ...q, answer } : q
     );
-
-    updateChild(selectedChild.id, { ...selectedChild, questions: updatedQuestions });
-    setSelectedChild({ ...selectedChild, questions: updatedQuestions });
+    setLocalQuestions(updatedQuestions);
   };
 
   const handleAddChild = (newChild) => {
@@ -37,13 +42,23 @@ const QuestionsPage = () => {
     setAddingChild(false);
   };
 
+  const handleSaveChanges = () => {
+    if (selectedChild) {
+      updateChild(selectedChild.id, { ...selectedChild, questions: localQuestions });
+      setSelectedChild({ ...selectedChild, questions: localQuestions });
+    }
+    alert("Changes saved successfully.");
+  };
+
   return (
     <div className="questions-page">
       <h1 className="page-title">Answer Questions for Each Child</h1>
       <div className="actions">
         <button className="btn-add-child" onClick={() => setAddingChild(true)}>Add Child</button>
         {selectedChild && (
-          <button className="btn-edit-child" onClick={() => setEditingChild(selectedChild)}>Edit Child</button>
+          <>
+            <button className="btn-edit-child" onClick={() => setEditingChild(selectedChild)}>Edit Child</button>
+          </>
         )}
       </div>
       <div className="content">
@@ -53,7 +68,7 @@ const QuestionsPage = () => {
         <div className="qa-section section">
           {selectedChild && (
             <QAList 
-              questions={selectedChild.questions} 
+              questions={localQuestions} 
               updateAnswer={updateAnswer} 
               childName={selectedChild.name}
             />
@@ -84,6 +99,15 @@ const QuestionsPage = () => {
           </div>
         </div>
       )}
+
+{selectedChild && (
+          <>
+          <div className='actions'>
+            <button className="btn-save-changes" onClick={handleSaveChanges}>Save Changes</button>
+          </div>
+            
+          </>
+        )}
     </div>
   );
 };

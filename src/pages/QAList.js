@@ -1,5 +1,5 @@
 import React from 'react';
-import "../styles/QAlistUser.css"
+import "../styles/QAlistUser.css";
 
 const QAList = ({ questions, updateAnswer, childName }) => {
   return (
@@ -11,13 +11,14 @@ const QAList = ({ questions, updateAnswer, childName }) => {
           <div className="options-container">
             {q.options.length > 0 ? (
               q.options.map((option, idx) => (
-                <label key={idx} className="option-label">
+                <label key={idx} className="option-label" aria-label={`Option ${idx + 1}`}>
                   <input
                     type="radio"
                     name={`question-${index}`}
                     value={option}
                     checked={q.answer === option}
                     onChange={() => updateAnswer(q.question, option)}
+                    aria-checked={q.answer === option}
                   />
                   <span className="option-text">{option}</span>
                 </label>
@@ -28,6 +29,7 @@ const QAList = ({ questions, updateAnswer, childName }) => {
                 value={q.answer}
                 onChange={(e) => updateAnswer(q.question, e.target.value)}
                 placeholder="Type your answer here"
+                aria-label={`Answer for question ${index + 1}`}
               />
             )}
           </div>
