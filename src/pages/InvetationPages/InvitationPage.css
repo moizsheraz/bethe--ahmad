@@ -43,6 +43,22 @@
 .invitation-page .item:hover{
     transform: translateY(-10px);
 }
+.google-calendar-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    background-color: #007bff;
+    border-radius: 4px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.google-calendar-button:hover {
+    color: white;
+}
+
 
 .invitation-page .item img{
     width: 200px;
@@ -60,6 +76,7 @@
     cursor: pointer;
     animation: fly 5s forwards ease-in-out;
 }
+
 
 @keyframes fly {
     0% {

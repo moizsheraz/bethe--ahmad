@@ -1,45 +1,149 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { firestore } from '../../firebase/firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import '../../styles/Products.css';
 import './InvitationPage.css';
-import DatePicker from 'react-datepicker'; 
-import 'react-datepicker/dist/react-datepicker.css'; 
+import { FaCopy } from 'react-icons/fa'; 
 
 const InvitationPage = () => {
-    const location = useLocation();
-    const { name, age,mydate, place, time, description, list } = location.state || { name: "", age: '', place: '', time: '',mydate:'', description: '', list: [] };
-    const [isGiftOpen, setIsGiftOpen] = useState(false);
-    let DateArr = Date(mydate).toString().split(" ")
-    const handleGiftClick = () => {
-        setIsGiftOpen(true);
+    const { invitationId } = useParams(); 
+    const [invitation, setInvitation] = useState(null);
+    const [selectedPriceRange, setSelectedPriceRange] = useState('all');
+    const [filteredList, setFilteredList] = useState([]);
+
+    useEffect(() => {
+        const fetchInvitation = async () => {
+            try {
+                const invitationDoc = doc(firestore, 'invitations', invitationId);
+                const docSnap = await getDoc(invitationDoc);
+                if (docSnap.exists()) {
+                    const invitationData = docSnap.data();
+                    setInvitation(invitationData);
+                    setFilteredList(invitationData.list);
+                } else {
+                    console.log('No such document!');
+                }
+            } catch (error) {
+                console.error('Error fetching invitation:', error);
+            }
+        };
+
+        fetchInvitation();
+    }, [invitationId]);
+
+    useEffect(() => {
+        if (invitation) {
+            // Filter gifts based on selected price range
+            const filtered = invitation.list.filter(item => {
+                const price = parseFloat(item.price.replace('$', ''));
+                switch (selectedPriceRange) {
+                    case '0-50':
+                        return price >= 0 && price <= 50;
+                    case '51-100':
+                        return price > 50 && price <= 100;
+                    case '101-200':
+                        return price > 100 && price <= 200;
+                    case '201-500':
+                        return price > 200 && price <= 500;
+                    case '500+':
+                        return price > 500;
+                    default:
+                        return true; // Show all items if 'all' is selected
+                }
+            });
+            setFilteredList(filtered);
+        }
+    }, [selectedPriceRange, invitation]);
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert('Invitation link copied to clipboard!');
+        });
     };
 
+    const getGoogleCalendarLink = () => {
+        if (!invitation) return '';
+    
+        const { name, date, time, place } = invitation;
+        
+        // Format the date and time
+        const eventDate = new Date(date);
+        const eventStart = new Date(`${eventDate.toISOString().split('T')[0]}T${time}:00`);
+        const eventEnd = new Date(eventStart.getTime() + 2 * 60 * 60 * 1000); // Assuming 2 hours event duration
+    
+        const start = eventStart.toISOString().replace(/-|:|\.\d+Z/g, "").replace("T", "T");
+        const end = eventEnd.toISOString().replace(/-|:|\.\d+Z/g, "").replace("T", "T");
+    
+        const googleCalendarBase = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
+        const details = `Event: ${name} - Birthday Party\nLocation: ${place}`;
+        const description = invitation.description ? `Details: ${invitation.description}` : '';
+    
+        return `${googleCalendarBase}&text=${encodeURIComponent(name)}&dates=${start}/${end}&details=${encodeURIComponent(details + ' ' + description)}&location=${encodeURIComponent(place)}`;
+    };
+    
+
+    if (!invitation) return <p>Loading...</p>;
+
+    const { name, place, date, time, description } = invitation;
+    let DateArr = date ? new Date(date).toString().split(' ') : ['', '', '', '', ''];
+
     return (
-            <div className="invitation-page" >
-                <h1>Birthday Party Invitation 🎉</h1>
-                <h4>You are invited to celebrate {name}'s {age}th birthday!</h4>
-                <h4>📅 Date and Time : <strong>{time} {DateArr[0]} {DateArr[2]} {DateArr[1]}</strong></h4>
-                <h4>📍 Location : <strong>{place}</strong></h4>
-                <h4>Come rejoice, dance, and surprise {name} with gifts he truly loves!</h4>
-                    {description && <p><strong>Additional Details :</strong> {description}</p>}
-
-                    {list && list.length > 0 && (
-                            <div className="item-list">
-                                {list.map((item, index) => (
-                                    <li key={index} className="item">
-                                        <img src={item.image} alt={item.name}  />
-                                        <p><strong>Name: </strong> {item.name}</p>
-                                        <p><strong>Price: </strong> {item.price}</p>
-                                        <p><strong>Description: </strong> {item.description}</p>
-                                    </li>
-                                ))}
-                            </div>
-                    )}
-
-                    <div className={`gift-container ${isGiftOpen ? 'gift-open' : ''}`} onClick={handleGiftClick}>
-                        <div className="gift-lid"></div>
-                        <div className="gift-box"></div>
-                    </div>
+        <div className="invitation-page">
+            <h1>
+                Birthday Party Invitation 🎉
+                <span style={{ cursor: 'pointer' }} onClick={handleCopy}>
+                    <FaCopy width={"8"} height={"8"} />
+                </span>
+            </h1>
+            <h4>You are invited to celebrate {name}'s birthday!</h4>
+            <h4>📅 Date and Time: <strong>{time} {DateArr[0]} {DateArr[2]} {DateArr[1]}</strong></h4>
+            <h4>📍 Location: <strong>{place}</strong></h4>
+            <h4>Come rejoice, dance, and surprise {name} with gifts they truly love!</h4>
+            {description && <p><strong>Additional Details:</strong> {description}</p>}
+            <div className="calendar-button-container" style={{ marginTop: "20px" }}>
+                <a href={getGoogleCalendarLink()} target="_blank" rel="noopener noreferrer" className="google-calendar-button">
+                    Add to Google Calendar
+                </a>
             </div>
+            {/* Container for filter and gift list */}
+            <div className="content-container">
+                {/* Filter Section */}
+                <div className="filter-container" style={{display:"flex", justifyContent:"center"}}>
+                    <select
+                        id="priceRange"
+                        className='price-filter'
+                        style={{"width":"20vw"}}
+                        value={selectedPriceRange}
+                        onChange={(e) => setSelectedPriceRange(e.target.value)}
+                    >
+                        <option value="all">All</option>
+                        <option value="0-50">$0 - $50</option>
+                        <option value="51-100">$51 - $100</option>
+                        <option value="101-200">$101 - $200</option>
+                        <option value="201-500">$201 - $500</option>
+                        <option value="500+">$500+</option>
+                    </select>
+                </div>
+                
+                {/* Gifts List */}
+                {filteredList && filteredList.length > 0 && (
+                    <div className="item-list">
+                        {filteredList.map((item, index) => (
+                            <li key={index} className="item">
+                                <img src={item.image} alt={item.name} />
+                                <p><strong>Name:</strong> {item.name}</p>
+                                <p><strong>Price:</strong> {item.price}</p>
+                                <p><strong>Description:</strong> {item.description}</p>
+                            </li>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            {/* Add to Google Calendar Button */}
+          
+        </div>
     );
 };
 

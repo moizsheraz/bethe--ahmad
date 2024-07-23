@@ -54,7 +54,7 @@ function App() {
           <Route path="/gifts-Page" element={<GiftsPage />} />
           <Route path="/questions-page" element={<QuestionsPage />} />
           <Route path="/register" element={<Register users={users} setUsers={setUsers} />} />
-          <Route path="/invitation/:childName" element={<InvetationPage />} />
+          <Route path="/invitation/:invitationId" element={<InvetationPage />} />
           <Route path="/invitation-form" element={<InvetationForom />} />
         </Routes>
       </ChildProvider>

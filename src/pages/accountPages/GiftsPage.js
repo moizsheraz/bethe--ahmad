@@ -242,7 +242,8 @@ const GiftsPage = () => {
               listOfGifts={selectedChild.gifts || []}
               childName={selectedChild.name} 
               childId={selectedChild.id}
-              friends={selectedChild.friends}  // Pass the friends list
+              friends={selectedChild.friends}  
+              summary = {summary}
             />
           </div>
         </div>

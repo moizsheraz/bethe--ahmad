@@ -4,17 +4,18 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; 
 import { firestore } from '../../firebase/firebase';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import './InvitationForm.css'; 
 
-const InvitationForm = ({ listOfGifts, childName, childId, friends }) => {
+const InvitationForm = ({ listOfGifts, childName, childId, friends,summary }) => {
     const [invitation, setInvitation] = useState({
         name: childName,
-        age: '',
         place: '',
         mydate: null,
         time: '',
         description: '',
-        list: listOfGifts
+        list: listOfGifts,
+        summary:summary
     });
 
     const navigate = useNavigate();
@@ -25,17 +26,24 @@ const InvitationForm = ({ listOfGifts, childName, childId, friends }) => {
         const invitationData = {
             ...invitation,
             date: invitation.mydate ? invitation.mydate.toISOString().split('T')[0] : '',
-            list: listOfGifts // Include gifts in the invitation data
+            list: listOfGifts,
+            childId: childId
         };
 
         try {
+            // Create a new invitation document
+            const invitationRef = await addDoc(collection(firestore, 'invitations'), invitationData);
+
+            // Associate the invitation with the friends
             for (const friendId of friends) {
                 const childRef = doc(firestore, 'children', friendId);
                 await updateDoc(childRef, {
-                    invitations: arrayUnion(invitationData)
+                    invitations: arrayUnion(invitationRef.id) // Store invitation ID in child document
                 });
             }
-            navigate(`/invitation/${childName}`, { state: invitation });
+            
+            // Navigate to the invitation page with invitationId
+            navigate(`/invitation/${invitationRef.id}`);
         } catch (error) {
             console.error('Error sending invitations:', error);
         }
@@ -74,7 +82,9 @@ const InvitationForm = ({ listOfGifts, childName, childId, friends }) => {
                         <div className="form-group">
                             <label htmlFor="time">Time</label>
                             <input
-                                type="text"
+                            className='date'
+                            style={{padding:"10px", border:"2px solid grey", "borderRadius":"10px"}}
+                                type="time"
                                 id="time"
                                 value={invitation.time}
                                 onChange={(e) => setInvitation({ ...invitation, time: e.target.value })}
