@@ -14,7 +14,7 @@ app.use(cors({
 }));
 
 const groq = new Groq({
-  apiKey: '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',
+  apiKey: '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',
 });
 
 app.post('/suggest-products', async (req, res) => {

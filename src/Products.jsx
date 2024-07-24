@@ -1,34 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import productData from './assets/products.json';
-import './styles/Products.css';
-import ProductCard from './Product';
-import { firestore } from './firebase/firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import React, { useEffect, useState } from "react";
+import productData from "./assets/products.json";
+import "./styles/Products.css";
+import ProductCard from "./Product";
+import { firestore } from "./firebase/firebase";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 function Products() {
   const [products, setProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [priceFilter, setPriceFilter] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [priceFilter, setPriceFilter] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
   const [likedProducts, setLikedProducts] = useState([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
       setProducts(productData);
 
-      const userInfo = JSON.parse(localStorage.getItem('user-info'));
+      const userInfo = JSON.parse(localStorage.getItem("user-info"));
       if (userInfo) {
-        const userDocRef = doc(firestore, 'users', userInfo.uid);
+        const userDocRef = doc(firestore, "users", userInfo.uid);
         const userDoc = await getDoc(userDocRef);
         if (userDoc.exists()) {
           const likedProductIds = userDoc.data().likedProducts || [];
-          const updatedProducts = productData.map(product =>
-            likedProductIds.includes(product.id) ? { ...product, isLiked: true } : product
+          const updatedProducts = productData.map((product) =>
+            likedProductIds.includes(product.id)
+              ? { ...product, isLiked: true }
+              : product
           );
           setProducts(updatedProducts);
-          setLikedProducts(updatedProducts.filter(product => likedProductIds.includes(product.id)));
+          setLikedProducts(
+            updatedProducts.filter((product) =>
+              likedProductIds.includes(product.id)
+            )
+          );
         }
       }
     };
@@ -37,36 +43,38 @@ function Products() {
   }, []);
 
   const toggleLike = async (id) => {
-    const updatedProducts = products.map(product =>
+    const updatedProducts = products.map((product) =>
       product.id === id ? { ...product, isLiked: !product.isLiked } : product
     );
     setProducts(updatedProducts);
 
-    const likedProduct = updatedProducts.find(product => product.id === id);
+    const likedProduct = updatedProducts.find((product) => product.id === id);
 
     let updatedLikedProducts;
     if (likedProduct.isLiked) {
       updatedLikedProducts = [...likedProducts, likedProduct];
       setSnackbarMessage(`You have liked ${likedProduct.name}`);
     } else {
-      updatedLikedProducts = likedProducts.filter(product => product.id !== id);
+      updatedLikedProducts = likedProducts.filter(
+        (product) => product.id !== id
+      );
       setSnackbarMessage(`You have unliked ${likedProduct.name}`);
     }
     setLikedProducts(updatedLikedProducts);
     setSnackbarOpen(true);
 
-    const userInfo = JSON.parse(localStorage.getItem('user-info'));
+    const userInfo = JSON.parse(localStorage.getItem("user-info"));
     if (userInfo) {
-      const userDocRef = doc(firestore, 'users', userInfo.uid);
-      const likedProductIds = updatedLikedProducts.map(product => product.id);
+      const userDocRef = doc(firestore, "users", userInfo.uid);
+      const likedProductIds = updatedLikedProducts.map((product) => product.id);
 
       try {
         await updateDoc(userDocRef, {
-          likedProducts: likedProductIds
+          likedProducts: likedProductIds,
         });
-        console.log('Liked products updated successfully');
+        console.log("Liked products updated successfully");
       } catch (error) {
-        console.error('Error updating liked products: ', error);
+        console.error("Error updating liked products: ", error);
       }
     }
   };
@@ -87,10 +95,14 @@ function Products() {
     setCategoryFilter(event.target.value);
   };
 
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
     const matchesPrice = priceFilter ? product.price <= priceFilter : true;
-    const matchesCategory = categoryFilter ? product.category.includes(categoryFilter) : true;
+    const matchesCategory = categoryFilter
+      ? product.category.includes(categoryFilter)
+      : true;
     return matchesSearch && matchesPrice && matchesCategory;
   });
 
@@ -104,13 +116,21 @@ function Products() {
           value={searchTerm}
           onChange={handleSearch}
         />
-        <select className="price-filter" value={priceFilter} onChange={handlePriceFilter}>
+        <select
+          className="price-filter"
+          value={priceFilter}
+          onChange={handlePriceFilter}
+        >
           <option value="">Filter by price</option>
           <option value="20">Up to $20</option>
           <option value="30">Up to $30</option>
           <option value="60">Up to $60</option>
         </select>
-        <select className="category-filter price-filter" value={categoryFilter} onChange={handleCategoryFilter}>
+        <select
+          className="category-filter price-filter"
+          value={categoryFilter}
+          onChange={handleCategoryFilter}
+        >
           <option value="">Filter by category</option>
           <option value="Dolls">Dolls</option>
           <option value="Games">Games</option>
@@ -135,7 +155,7 @@ function Products() {
           ))}
         </div>
       </div>
-      <div className={`snackbar ${snackbarOpen ? 'show' : ''}`}>
+      <div className={`snackbar ${snackbarOpen ? "show" : ""}`}>
         <div className="snackbar-content">
           {snackbarMessage}
           <button id="close-btn" onClick={handleCloseSnackbar}>
@@ -143,6 +163,9 @@ function Products() {
           </button>
         </div>
       </div>
+      <footer>
+        <div className="rights">&copy; 2024 GiftFlow. All rights reserved.</div>
+      </footer>
     </div>
   );
 }

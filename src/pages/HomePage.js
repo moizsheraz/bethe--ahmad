@@ -104,7 +104,7 @@ const HomePage = () => {
         </div>
       </Collapse>
       <div className="why-choose-giftflow">
-        <h3>Why choose GiftFlow?</h3>
+        <h3>Why Choose GiftFlow?</h3>
         <div className="cards-container">
           <div className="card" style={{ background: "#ecb7fc3d" }}>
             <h5>Tailored for Children</h5>
@@ -130,7 +130,7 @@ const HomePage = () => {
             </p>
           </div>
         </div>
-        <div className="button">
+        <div className="cta-button">
           <a href="/ai-help">
             <button>Try GiftFlow Today!</button>
           </a>

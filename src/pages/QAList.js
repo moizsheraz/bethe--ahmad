@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "../styles/QAlistUser.css";
 
 const QAList = ({ questions, updateAnswer, childName }) => {
@@ -11,7 +11,11 @@ const QAList = ({ questions, updateAnswer, childName }) => {
           <div className="options-container">
             {q.options.length > 0 ? (
               q.options.map((option, idx) => (
-                <label key={idx} className="option-label" aria-label={`Option ${idx + 1}`}>
+                <label
+                  key={idx}
+                  className="option-label"
+                  aria-label={`Option ${idx + 1}`}
+                >
                   <input
                     type="radio"
                     name={`question-${index}`}
@@ -30,6 +34,7 @@ const QAList = ({ questions, updateAnswer, childName }) => {
                 onChange={(e) => updateAnswer(q.question, e.target.value)}
                 placeholder="Type your answer here"
                 aria-label={`Answer for question ${index + 1}`}
+                className="text-area"
               />
             )}
           </div>

@@ -1,10 +1,10 @@
 .ai-page {
-  padding: 20px;
+  padding: 10px;
   min-height: 100vh;
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 30px;
 }
 
 .products-body {
@@ -13,21 +13,20 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 .started {
   margin: 0;
   text-align: center;
 }
 
-.started h1{
+.started h1 {
   font-size: 2.7rem;
 }
 
-.started p{
+.started p {
   margin: 20px auto;
 }
 
-.started button{
+.started button {
   margin: 30px auto;
 }
 
@@ -95,7 +94,7 @@
   margin: 30px 0;
 }
 
-.question-container h3{
+.question-container h3 {
   margin: 50px auto;
 }
 
@@ -116,7 +115,6 @@
   word-wrap: none;
 }
 
-
 .textarea {
   width: 100%;
   resize: vertical;
@@ -133,10 +131,9 @@
   justify-content: space-between;
 }
 
-.products h1{
-  font-size: 2.7rem;
+.products h1 {
+  text-align: center;
 }
-
 
 .grid-container {
   display: flex;
@@ -144,4 +141,9 @@
   gap: 20px;
   align-items: center;
   justify-content: center;
+}
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

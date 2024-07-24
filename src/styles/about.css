@@ -1,5 +1,5 @@
-.about{
-  margin: 100px auto;
+.about {
+  margin: 20px auto;
   margin-bottom: 0;
   padding-bottom: 40px;
   width: 80%;
@@ -8,18 +8,18 @@
   overflow: hidden;
 }
 
-.about h1{
+.about h1 {
   font-size: 3.5rem;
   font-weight: bolder;
   margin: 40px auto;
 }
 
-.about p{
+.about p {
   font-size: 1rem;
   margin: 20px auto;
 }
 
-.about .about-cards{
+.about .about-cards {
   margin: 50px auto;
   display: flex;
   justify-content: center;
@@ -27,7 +27,7 @@
   flex-wrap: wrap;
 }
 
-.about .about-cards #card{
+.about .about-cards #card {
   width: 350px;
   display: flex;
   justify-content: space-evenly;
@@ -36,15 +36,15 @@
   border-radius: 10px;
   border: 1px solid #00000027;
   box-shadow: 2px 2px 5px #deb5f171;
-  transition: all .3s ease-in;
+  transition: all 0.3s ease-in;
   margin: 30px;
 }
 
-.about .about-cards #card:hover{
+.about .about-cards #card:hover {
   transform: translateY(-8px);
 }
 
-.about .about-cards #card img{
+.about .about-cards #card img {
   width: 220px;
   border-radius: 50%;
   border: 1px dotted #00000062;
@@ -53,30 +53,29 @@
   margin: 20px auto;
 }
 
-.about .about-cards #card h4{
+.about .about-cards #card h4 {
   color: #cd78d8d5;
 }
 
-.about .about-cards #card p{
+.about .about-cards #card p {
   font-size: 1.2rem;
   color: #333;
 }
 
-.about .about-cards #card .email{
+.about .about-cards #card .email {
   font-weight: 600;
 }
 
 @media only screen and (max-width: 1500px) {
-
-  .about{
+  .about {
     height: auto;
   }
 
-  .about .about-cards #card{
-      width: 250px;
+  .about .about-cards #card {
+    width: 250px;
   }
 
-  .about .about-cards #card img{
+  .about .about-cards #card img {
     width: 120px;
   }
 }

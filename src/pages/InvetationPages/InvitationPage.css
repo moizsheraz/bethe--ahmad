@@ -1,105 +1,122 @@
-.invitation-page{
-    text-align: center;
+/* InvitationPage.css */
+.invitation-page {
+  background: #f2e5f5;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  max-width: 800px;
+  width: 90%;
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 3%;
 }
 
-.invitation-page h1{
-    margin: 50px auto;
-    font-size: 3.2rem;
-    font-weight: bold;
+.invitation-page::before,
+.invitation-page::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  border-radius: 50%;
+  z-index: -1;
 }
 
-.invitation-page h4{
-    margin: 30px auto;
-    font-size: 1.3rem;
-    word-spacing: 2px;
-    letter-spacing: 1px;
+.invitation-page::before {
+  background: #eb81cb;
+  top: 0;
+  left: -30%;
 }
 
+.invitation-page::after {
+  background: #ff92ad;
+  bottom: 0;
+  right: -30%;
+}
+
+.invitation-page h1 {
+  font-size: 2em;
+  color: #333;
+}
+
+.invitation-page h4 {
+  color: #555;
+  margin: 10px 0;
+}
+
+.invitation-page h4 strong {
+  color: #e53935;
+}
+
+.invitation-page p {
+  color: #555;
+  margin: 10px 0;
+}
+
+.invitation-page .balloon {
+  position: absolute;
+  width: 50px;
+  height: 70px;
+  background: rgba(255, 0, 0, 0.2);
+  border-radius: 50%;
+  top: 20px;
+  right: 20px;
+}
+
+.invitation-page .balloon::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: rgba(255, 0, 0, 0.2);
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 .invitation-page .item-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    list-style-type: none;
-    margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 5px auto;
 }
 
 .invitation-page .item {
-    cursor: pointer;
-    width: 300px;
-    min-height: 350px;
-    height: auto;
-    border: 1px solid #0000003a;
-    margin: 15px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-    transition: all .4s ease-in;
+  cursor: pointer;
+  background-color: #f8ade2;
+  width: 300px;
+  min-height: 320px;
+  height: auto;
+
+  margin: 10px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.4s ease-in;
 }
 
-.invitation-page .item:hover{
-    transform: translateY(-10px);
-}
-.google-calendar-button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    text-decoration: none;
-    background-color: #007bff;
-    border-radius: 4px;
-    text-decoration: none;
-    text-align: center;
+.invitation-page .item:hover {
+  transform: translateY(-10px);
 }
 
-.google-calendar-button:hover {
-    color: white;
-}
-
-
-.invitation-page .item img{
-    width: 200px;
-    height: 130px;
-    object-fit: cover;
+.invitation-page .item img {
+  width: 100px;
+  height: 130px;
+  object-fit: cover;
 }
 
 .gift-container {
-    position: fixed; 
-    bottom: -200px; 
-    left: 50%;      
-    transform: translateX(-50%); 
-    width: 200px;
-    height: 200px;
-    cursor: pointer;
-    animation: fly 5s forwards ease-in-out;
-}
-
-
-@keyframes fly {
-    0% {
-        bottom: -200px;
-    }
-    100% {
-        bottom: 100%;   
-    }
-}
-
-.gift-lid, .gift-box {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: url('../../background/images/b1.png') no-repeat center center / contain;
-    transition: transform 1s;
-}
-
-.gift-lid {
-    z-index: 2;
-    background-image: url('../../background/images/b1.png');
-}
-
-.gift-open .gift-lid {
-    transform: rotateX(-90deg);
+  position: fixed;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  animation: fly 5s forwards ease-in-out;
 }

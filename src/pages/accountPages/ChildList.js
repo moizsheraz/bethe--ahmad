@@ -1,7 +1,9 @@
-import React from 'react';
-import '../../styles/childList.css';
+import React, { useState } from "react";
+import "../../styles/childList.css";
 
 const ChildList = ({ children, setSelectedChild }) => {
+  const [activeChild, setActiveChild] = useState(null);
+
   const calculateAge = (dob) => {
     const today = new Date();
     const birthDate = new Date(dob);
@@ -21,7 +23,7 @@ const ChildList = ({ children, setSelectedChild }) => {
       months--;
       days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
     }
-    
+
     if (months < 0) {
       years--;
       months += 12;
@@ -37,22 +39,34 @@ const ChildList = ({ children, setSelectedChild }) => {
       return "Below 1 day";
     }
   };
-  
+
+  const handleChildClick = (child) => {
+    setSelectedChild(child);
+    setActiveChild(child);
+  };
 
   return (
-    <div className="child-list-container  checking">
+    <div className="child-list-container checking">
       <h2>Children List</h2>
       <div className="child-list">
         <div className="child-list-headings">
-          <div><h4>Name</h4></div>
-          <div><h4>Age</h4></div>
-          <div><h4>Date of Birth</h4></div>
+          <div>
+            <h4>Name</h4>
+          </div>
+          <div>
+            <h4>Age</h4>
+          </div>
+          <div>
+            <h4>Date of Birth</h4>
+          </div>
         </div>
         {children.map((child, index) => (
-          <div 
-            key={index} 
-            className="child-list-item" 
-            onClick={() => setSelectedChild(child)}
+          <div
+            key={index}
+            className={`child-list-item ${
+              activeChild === child ? "active" : ""
+            }`}
+            onClick={() => handleChildClick(child)}
           >
             <div className="child-name">{child.name}</div>
             <div className="child-age">{calculateAge(child.dob)}</div>

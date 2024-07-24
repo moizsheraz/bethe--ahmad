@@ -1,9 +1,10 @@
+// GiftList.js
 import React, { useState, useEffect } from 'react';
 import '../../styles/GiftList.css'; 
 import { firestore } from '../../firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
-const GiftList = ({ gifts, deleteGift, setEditingGift, childName, isSuggested,isAdded }) => {
+const GiftList = ({ gifts, deleteGift, setEditingGift, childName, isSuggested, isAdded, addLikedGift }) => {
   const [likedProducts, setLikedProducts] = useState([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -43,6 +44,9 @@ const GiftList = ({ gifts, deleteGift, setEditingGift, childName, isSuggested,is
     if (likedProduct.isLiked) {
       updatedLikedProducts = [...likedProducts, likedProduct];
       setSnackbarMessage(`You have liked ${likedProduct.name}`);
+      if (addLikedGift) {
+        addLikedGift(likedProduct);
+      }
     } else {
       updatedLikedProducts = likedProducts.filter(product => product.id !== id);
       setSnackbarMessage(`You have unliked ${likedProduct.name}`);
@@ -74,9 +78,11 @@ const GiftList = ({ gifts, deleteGift, setEditingGift, childName, isSuggested,is
           <h5 className="product-name">{product.name}</h5>
           <p className="price">{product.price}$</p>
           <p className="product-description">{product.description}</p>
-        {!isAdded && (  <button onClick={() => toggleLike(product.id)} id="icon-button">
-            {product.isLiked ? '❤️' : '🤍'}
-          </button>)}
+          {!isAdded && (  
+            <button onClick={() => toggleLike(product.id)} id="icon-button">
+              {product.isLiked ? '❤️' : '🤍'}
+            </button>
+          )}
           {!isSuggested && (
             <div className="icon-container">
               <button id="icon-button" onClick={() => deleteGift(childName, product.id)}>🗑️</button>

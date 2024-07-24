@@ -1,11 +1,11 @@
 .questions-page {
-  padding: 20px;
-  position: relative; 
+  padding: 10px;
+  position: relative;
   min-height: 100vh;
 }
 
 .page-title {
-  color: #1a1a1a; 
+  color: #1a1a1a;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -17,7 +17,7 @@
 }
 
 .actions button {
-  margin: 10px auto;
+  margin: 15px auto;
   cursor: pointer;
   padding: 15px 30px;
   font-size: 1.1rem;
@@ -42,26 +42,26 @@
 
 .section {
   flex: 1;
-  border: 1px solid #4a4a4a38; 
+  border: 1px solid #4a4a4a38;
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px;
 }
 
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); 
+
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
+
   align-items: center;
   justify-content: center;
+  margin: auto;
   z-index: 1000;
 }
 
 .modal-content {
-  background-color: #ffffff; 
+  background-color: #ffffff;
+  margin-top: 7%;
   border-radius: 20px;
   padding: 20px;
   max-width: 500px;
@@ -69,21 +69,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
-
-
-
-
-
-
-
-
-
-
 @media only screen and (max-width: 1160px) {
-
-  .content{
+  .content {
     flex-direction: column;
   }
-
 }

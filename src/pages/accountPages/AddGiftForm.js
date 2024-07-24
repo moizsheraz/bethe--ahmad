@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../../styles/addChild.css';
-import GiftPlaceholder from "../../assets/giftPic.jpg";
 
 const AddGiftForm = ({ addGift, setAddingGift, childName }) => {
   const [gift, setGift] = useState({
@@ -11,7 +10,7 @@ const AddGiftForm = ({ addGift, setAddingGift, childName }) => {
     websiteLink: '', 
     description: ''
   });
-  const [imagePreview, setImagePreview] = useState(GiftPlaceholder);
+  const [imagePreview, setImagePreview] = useState("https://img.freepik.com/free-vector/pink-gift-box-present-icon_18591-82305.jpg?t=st=1721828864~exp=1721832464~hmac=632a381f18f0f05ffdf266f54dbd520fbd2fb8e70ffb096d96782b572d4970d1&w=740");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,7 +33,7 @@ const AddGiftForm = ({ addGift, setAddingGift, childName }) => {
     e.preventDefault();
     const giftWithImage = {
       ...gift,
-      image: gift.image || GiftPlaceholder
+      image: gift.image || "https://img.freepik.com/free-vector/pink-gift-box-present-icon_18591-82305.jpg?t=st=1721828864~exp=1721832464~hmac=632a381f18f0f05ffdf266f54dbd520fbd2fb8e70ffb096d96782b572d4970d1&w=740"
     };
     addGift(childName, giftWithImage);
   };
