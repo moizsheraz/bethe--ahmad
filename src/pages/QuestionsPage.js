@@ -14,11 +14,6 @@ const QuestionsPage = () => {
   const [localQuestions, setLocalQuestions] = useState([]);
 
   useEffect(() => {
-    // Fetch children data from Firestore when component mounts
-    // Here, you'd use a hook or function to fetch data based on the current user
-  }, []);
-
-  useEffect(() => {
     if (selectedChild) {
       setLocalQuestions(selectedChild.questions);
     }

@@ -3,7 +3,8 @@ import axios from 'axios';
 import userQuestions from '../assets/questions.json';
 import '../styles/Aiforom.css';
 import ProductCard from '../Product';
-import productsData from '../assets/products.json'; 
+import productsData from '../assets/products.json';
+import loading from "../../src/assets/loading.gif"
 
 function SurveyForm() {
   const [questions, setQuestions] = useState([]);
@@ -15,23 +16,24 @@ function SurveyForm() {
   const [products, setProducts] = useState([]);
   const [likedProducts, setLikedProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [answers, setAnswers] = useState({}); // To store user's answers
+  const [answers, setAnswers] = useState({});
+  const [isLoading, setIsLoading] = useState(false); // Loading state for AI generation
 
-const firstQuestion =  {
-    "id": 1,
-    "title": "What is Your Child's Age",
-    "options": [
-      { "value": "1-5","label": "1-5"},
-      {"value":"5-10","label": "5-10"},
-      {"value":"10-15","label": "10-15"},
-      {"value":"15-20","label": "15-20"},
+  const firstQuestion = {
+    id: 1,
+    title: "What is Your Child's Age",
+    options: [
+      { value: "1-5", label: "1-5" },
+      { value: "5-10", label: "5-10" },
+      { value: "10-15", label: "10-15" },
+      { value: "15-20", label: "15-20" }
     ]
-
-  }
+  };
 
   useEffect(() => {
     setQuestions([firstQuestion, ...userQuestions]);
   }, []);
+
   const handleAnswerChange = (e) => {
     const { name, value } = e.target;
     setAnswers(prevAnswers => ({ ...prevAnswers, [name]: value }));
@@ -72,26 +74,26 @@ const firstQuestion =  {
   const axiosOptions = {
     withCredentials: true,
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     }
-  }
+  };
 
   const handleFinish = async () => {
+    setIsLoading(true); // Set loading state to true
     setIsFinished(true);
-    
-    // Send answers to the backend and get suggested products
 
     try {
       const response = await axios.post('http://localhost:4000/suggest-products', answers, axiosOptions);
       const suggestedProductIds = response.data.suggestedProductIds.split(',').map(id => id.trim());
       
-      // Filter products based on suggested IDs
       const filteredProducts = productsData.filter(product => suggestedProductIds.includes(product.id.toString()));
       setProducts(filteredProducts);
     } catch (error) {
       console.error('Error:', error);
       setSnackbarMessage('An error occurred while fetching product suggestions.');
       setSnackbarOpen(true);
+    } finally {
+      setIsLoading(false); // Set loading state to false
     }
   };
 
@@ -103,7 +105,11 @@ const firstQuestion =  {
     <div className="home ai-page">
       <div className="card-body">
         <div className="survey-content">
-          {isFinished ? (
+          {isLoading ? (
+            <div className="loading-spinner">
+              <img style={{"height":"100px"}} src={loading} alt="Loading..." />
+            </div>
+          ) : isFinished ? (
             <div className="products">
               <h1>According to your answers, we suggest you buy:</h1>
               <div className="grid-container">
@@ -181,7 +187,6 @@ const firstQuestion =  {
               </div>
             )
           )}
-          {/* Snackbar Component */}
           <div className={`snackbar ${snackbarOpen ? 'show' : ''}`}>
             <div className="snackbar-content">
               {snackbarMessage}
