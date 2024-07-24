@@ -24,7 +24,7 @@ app.post('/suggest-products', async (req, res) => {
       messages: [
         {
           role: 'user',
-          content: `Based on these answers: ${JSON.stringify(answers)}, suggest products from this list: ${JSON.stringify(products)}. Only give the ids of Product Thanks ! Keep your responses in the format: ProductId1, ProductId2, ProductId3.... and please dont write extra text such that I will suggest etc. Make sure to only provide the product ids.If my answers are empty set you may return 3, 8, 7. Good luck!`,
+          content: `Based on these answers: ${JSON.stringify(answers)}, suggest products from this list: ${JSON.stringify(products)}. Only give the ids of Product Thanks ! Keep your responses in the format: ProductId1, ProductId2, ProductId3.... and please dont write extra text such that I will suggest etc. Make sure to only provide the product ids.If my answers are empty set you may return 3, 8, 47 , 20 , 12 ,24. Good luck! You must atleast give me 6 ids`,
         }
       ],
       model: 'llama3-8b-8192'
