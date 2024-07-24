@@ -52,20 +52,32 @@ const GiftsPage = () => {
         setSuggestedGifts(suggestions);
       }
     };
-
+    fetchSummary();
     fetchSuggestedGifts();
   }, [selectedChild]);
 
+
   const fetchSummary = async () => {
+    if (!selectedChild) {
+      console.error('No child selected for fetching summary');
+      return;
+    }
+  
     try {
-      const response = await axios.post('http://localhost:4000/summary', selectedChild?.answers || {});
+      const response = await axios.post('http://localhost:4000/summary', selectedChild.answers || {});
       const { summary } = response.data;
-      setSummary(summary);
-      setView('summary'); // Set the view to summary
+  
+      if (summary) {
+        setSummary(summary);
+        setView('summary');
+      } else {
+        console.warn('Summary not found in the response:', response.data);
+      }
     } catch (error) {
       console.error('Error fetching summary:', error);
     }
   };
+  
 
   const addGift = async (childName, gift) => {
     const updatedChildren = children.map(child => 
@@ -73,11 +85,14 @@ const GiftsPage = () => {
     );
     setChildren(updatedChildren);
 
-    const childRef = doc(firestore, 'children', selectedChild.id);
+    const updatedSelectedChild = updatedChildren.find(child => child.name === childName);
+    setSelectedChild(updatedSelectedChild);
+
+    const childRef = doc(firestore, 'children', updatedSelectedChild.id);
     await updateDoc(childRef, {
-      gifts: updatedChildren.find(child => child.name === childName).gifts
+      gifts: updatedSelectedChild.gifts
     });
-    
+
     setAddingGift(false);
     setView('list');
   };
@@ -89,10 +104,13 @@ const GiftsPage = () => {
         : child
     );
     setChildren(updatedChildren);
-    
-    const childRef = doc(firestore, 'children', selectedChild.id);
+
+    const updatedSelectedChild = updatedChildren.find(child => child.name === childName);
+    setSelectedChild(updatedSelectedChild);
+
+    const childRef = doc(firestore, 'children', updatedSelectedChild.id);
     await updateDoc(childRef, {
-      gifts: updatedChildren.find(child => child.name === childName).gifts
+      gifts: updatedSelectedChild.gifts
     });
   };
 
@@ -103,12 +121,15 @@ const GiftsPage = () => {
         : child
     );
     setChildren(updatedChildren);
-    
-    const childRef = doc(firestore, 'children', selectedChild.id);
+
+    const updatedSelectedChild = updatedChildren.find(child => child.name === childName);
+    setSelectedChild(updatedSelectedChild);
+
+    const childRef = doc(firestore, 'children', updatedSelectedChild.id);
     await updateDoc(childRef, {
-      gifts: updatedChildren.find(child => child.name === childName).gifts
+      gifts: updatedSelectedChild.gifts
     });
-    
+
     setEditingGift(null);
   };
 
@@ -118,9 +139,12 @@ const GiftsPage = () => {
     );
     setChildren(updatedChildren);
 
-    const childRef = doc(firestore, 'children', selectedChild.id);
+    const updatedSelectedChild = updatedChildren.find(child => child.name === childName);
+    setSelectedChild(updatedSelectedChild);
+
+    const childRef = doc(firestore, 'children', updatedSelectedChild.id);
     await updateDoc(childRef, {
-      friends: updatedChildren.find(child => child.name === childName).friends
+      friends: updatedSelectedChild.friends
     });
 
     setAddingFriend(false);
@@ -158,6 +182,7 @@ const GiftsPage = () => {
                   deleteGift={deleteGift}
                   setEditingGift={setEditingGift}
                   childName={selectedChild?.name}
+                  isAdded={true}
                 />
               )}
 
@@ -172,6 +197,7 @@ const GiftsPage = () => {
                         setEditingGift={setEditingGift}
                         childName={selectedChild?.name}
                         isSuggested={true}
+
                       />
                     </div>
                   )}
@@ -185,7 +211,6 @@ const GiftsPage = () => {
                 </div>
               )}
 
-              <button className="btn" onClick={() => setAddingFriend(true)}>Add Friend</button>
             </>
           )}
         </div>

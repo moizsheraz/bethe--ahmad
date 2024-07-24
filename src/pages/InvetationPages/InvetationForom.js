@@ -8,6 +8,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import './InvitationForm.css'; 
 
 const InvitationForm = ({ listOfGifts, childName, childId, friends,summary }) => {
+    console.log(summary)
     const [invitation, setInvitation] = useState({
         name: childName,
         place: '',
@@ -27,7 +28,8 @@ const InvitationForm = ({ listOfGifts, childName, childId, friends,summary }) =>
             ...invitation,
             date: invitation.mydate ? invitation.mydate.toISOString().split('T')[0] : '',
             list: listOfGifts,
-            childId: childId
+            childId: childId,
+            summary: summary
         };
 
         try {

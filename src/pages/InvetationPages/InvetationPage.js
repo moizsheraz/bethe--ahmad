@@ -85,7 +85,7 @@ const InvitationPage = () => {
 
     if (!invitation) return <p>Loading...</p>;
 
-    const { name, place, date, time, description } = invitation;
+    const { name, place, date, time, description ,summary} = invitation;
     let DateArr = date ? new Date(date).toString().split(' ') : ['', '', '', '', ''];
 
     return (
@@ -101,6 +101,7 @@ const InvitationPage = () => {
             <h4>📍 Location: <strong>{place}</strong></h4>
             <h4>Come rejoice, dance, and surprise {name} with gifts they truly love!</h4>
             {description && <p><strong>Additional Details:</strong> {description}</p>}
+            {summary && <p><strong></strong> {summary}</p>}
             <div className="calendar-button-container" style={{ marginTop: "20px" }}>
                 <a href={getGoogleCalendarLink()} target="_blank" rel="noopener noreferrer" className="google-calendar-button">
                     Add to Google Calendar
