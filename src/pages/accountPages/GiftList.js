@@ -79,7 +79,6 @@ const GiftList = ({ gifts, deleteGift, setEditingGift, childName, isSuggested,is
           </button>)}
           {!isSuggested && (
             <div className="icon-container">
-              <button id="icon-button" onClick={() => setEditingGift(product)}>✏️</button>
               <button id="icon-button" onClick={() => deleteGift(childName, product.id)}>🗑️</button>
             </div>
           )}

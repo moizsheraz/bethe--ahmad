@@ -33,6 +33,12 @@ const About = () => {
           <p>Team Member</p>
           <p className="email">hello@gmail.com</p>
         </div>
+        <div id="card">
+          <img src={'avatar.png'} alt="Avatar Photo" />
+          <h4>Avatar Name</h4>
+          <p>Team Member</p>
+          <p className="email">hello@gmail.com</p>
+        </div>
       </div>
 
       </div>
