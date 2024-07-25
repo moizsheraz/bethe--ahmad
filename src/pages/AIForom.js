@@ -18,6 +18,7 @@ function SurveyForm() {
   const [searchTerm, setSearchTerm] = useState("");
   const [answers, setAnswers] = useState({});
   const [isLoading, setIsLoading] = useState(false); // Loading state for AI generation
+  const [selectedPriceRange, setSelectedPriceRange] = useState(""); // State for selected price range
 
   const firstQuestion = {
     id: 1,
@@ -111,6 +112,17 @@ function SurveyForm() {
     setSnackbarOpen(false);
   };
 
+  const handlePriceRangeChange = (e) => {
+    setSelectedPriceRange(e.target.value);
+  };
+
+  const filteredProducts = products.filter((product) => {
+    if (!selectedPriceRange) return true;
+
+    const [min, max] = selectedPriceRange.split("-").map(Number);
+    return product.price >= min && product.price <= max;
+  });
+
   return (
     <div className="home ai-page">
       <div className="card-body">
@@ -123,8 +135,17 @@ function SurveyForm() {
           ) : isFinished ? (
             <div className="products">
               <h1>According to your answers, we suggest you buy:</h1>
+              <div className="price-filter">
+                <label htmlFor="price-range">Filter by price range:</label>
+                <select id="price-range" onChange={handlePriceRangeChange}>
+                  <option value="">All</option>
+                  <option value="50-100">$50 - $100</option>
+                  <option value="100-200">$100 - $200</option>
+                  <option value="200-300">$200 - $300</option>
+                </select>
+              </div>
               <div className="grid-container">
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                   <ProductCard
                     key={product.id}
                     id={product.id}
