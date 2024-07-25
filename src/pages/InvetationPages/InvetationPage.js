@@ -5,6 +5,7 @@ import { doc, getDoc } from "firebase/firestore";
 import "../../styles/Products.css";
 import "./InvitationPage.css";
 import { FaCopy } from "react-icons/fa";
+import "../../App.css";
 
 const InvitationPage = () => {
   const { invitationId } = useParams();
@@ -111,34 +112,36 @@ const InvitationPage = () => {
 
   return (
     <div className="invitation-page">
-      <div className="balloon"></div>
-      <h1>
-        Birthday Party Invitation 🎉
-        <span style={{ cursor: "pointer" }} onClick={handleCopy}>
-          <FaCopy width={"8"} height={"8"} />
-        </span>
-      </h1>
-      <h4>You are invited to celebrate {name}'s birthday!</h4>
-      <h4>
-        📅 Date and Time:{" "}
-        <strong>
-          {time} {DateArr[0]} {DateArr[2]} {DateArr[1]}
-        </strong>
-      </h4>
-      <h4>
-        📍 Location: <strong>{place}</strong>
-      </h4>
-      <h4>
-        Come rejoice, dance, and surprise {name} with gifts they truly love!
-      </h4>
-      {description && (
-        <p>
-          <strong>Additional Details:</strong> {description}
-        </p>
-      )}
+      <div>
+        <div className="balloon"></div>
+        <h1>
+          Birthday Party Invitation 🎉
+          <span style={{ cursor: "pointer" }} onClick={handleCopy}>
+            <FaCopy width={"8"} height={"8"} />
+          </span>
+        </h1>
+        <h4>You are invited to celebrate {name}'s birthday!</h4>
+        <h4>
+          📅 Date and Time:{" "}
+          <strong>
+            {time} {DateArr[0]} {DateArr[2]} {DateArr[1]}
+          </strong>
+        </h4>
+        <h4>
+          📍 Location: <strong>{place}</strong>
+        </h4>
+        <h4>
+          Come rejoice, dance, and surprise {name} with gifts they truly love!
+        </h4>
+        {description && (
+          <p>
+            <strong>Additional Details:</strong> {description}
+          </p>
+        )}
+      </div>
       {summary && (
         <p>
-          <strong></strong> {summary}
+          <strong>Child Will love these Gifts:</strong> {summary}
         </p>
       )}
       <div className="calendar-button-container" style={{ marginTop: "20px" }}>

@@ -107,7 +107,7 @@ function Products() {
   });
 
   return (
-    <div className="products">
+    <>
       <div className="filter-container">
         <input
           type="text"
@@ -138,35 +138,40 @@ function Products() {
           {/* Add more categories as needed */}
         </select>
       </div>
-      <div className="product-cards">
-        <h1>מוצרים נבחרים</h1>
-        <div className="grid-container">
-          {filteredProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              image={product.image}
-              description={product.description}
-              price={product.price}
-              isLiked={product.isLiked}
-              onLikeToggle={() => toggleLike(product.id)}
-            />
-          ))}
+
+      <div className="products">
+        <div className="product-cards">
+          <h1>מוצרים נבחרים</h1>
+          <div className="grid-container">
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                image={product.image}
+                description={product.description}
+                price={product.price}
+                isLiked={product.isLiked}
+                onLikeToggle={() => toggleLike(product.id)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className={`snackbar ${snackbarOpen ? "show" : ""}`}>
-        <div className="snackbar-content">
-          {snackbarMessage}
-          <button id="close-btn" onClick={handleCloseSnackbar}>
-            &times;
-          </button>
+        <div className={`snackbar ${snackbarOpen ? "show" : ""}`}>
+          <div className="snackbar-content">
+            {snackbarMessage}
+            <button id="close-btn" onClick={handleCloseSnackbar}>
+              &times;
+            </button>
+          </div>
         </div>
+        <footer>
+          <div className="rights">
+            &copy; 2024 GiftFlow. All rights reserved.
+          </div>
+        </footer>
       </div>
-      <footer>
-        <div className="rights">&copy; 2024 GiftFlow. All rights reserved.</div>
-      </footer>
-    </div>
+    </>
   );
 }
 

@@ -147,3 +147,45 @@
   justify-content: center;
   align-items: center;
 }
+
+/* new updated css */
+
+.text-center {
+  text-align: center;
+  padding: 3rem;
+  background-color: #eb81cb57;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.text-center h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-family: "Arial", sans-serif;
+}
+
+.text-center p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 1rem;
+  font-family: "Arial", sans-serif;
+}
+
+.primary-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #8e8cff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.primary-button:hover {
+  background-color: #7b7bff;
+  transform: scale(1.05);
+}

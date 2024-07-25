@@ -1,13 +1,13 @@
 .homecontainer {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 60px;
+  padding: 80px;
   text-align: center;
-  max-width: 1050px;
+  max-width: 1150px;
   border-radius: 30px;
   margin: auto;
   width: 90%;
   margin-top: 60px;
-  background-color: #eb81cb;
+  background-color: #071952;
   position: relative;
 
   overflow: hidden;
@@ -38,6 +38,88 @@
   font-size: 1.1em;
   color: whitesmoke;
   line-height: 1.9;
+}
+
+body {
+  font-family: "Poppins", sans-serif; /* Using a more modern font */
+}
+
+.companies-section {
+  background: linear-gradient(
+    135deg,
+    #071952 0%,
+    #071952c1 100%
+  ); /* Gradient background */
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adding shadow for depth */
+}
+
+.companies-section::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  z-index: 1;
+  animation: float 6s ease-in-out infinite; /* Adding floating animation */
+}
+
+.companies-section::after {
+  content: "";
+  position: absolute;
+  bottom: -60px;
+  right: -60px;
+  width: 350px;
+  height: 350px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  z-index: 1;
+  animation: float 8s ease-in-out infinite; /* Adding floating animation */
+}
+
+.companies-section h3 {
+  font-size: 2.5em;
+  color: white;
+  margin: 0;
+  z-index: 2;
+  position: relative;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Adding text shadow */
+}
+
+.companies-section p {
+  font-size: 1.2em;
+  margin-top: 15px;
+  z-index: 2;
+  position: relative;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(80px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.heading-three {
+  color: white;
 }
 .background-shape {
   position: absolute;
@@ -111,7 +193,7 @@
   border: none;
   outline: none;
   border-radius: 20px;
-  background-color: #e391eed5;
+  background-color: #088395;
   color: #000;
 }
 

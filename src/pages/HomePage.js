@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/HomePage.css";
 import { Collapse } from "react-bootstrap";
+// import app.css
+import "../App.css";
 
 const HomePage = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="home">
-      <div class="homecontainer">
+      <div class="homecontainer ">
         <h1 class="welcome">!Welcome</h1>
-        <img src="logo.jfif" alt="Gift Flow Logo" class="logo" />
+        <img src="logo.jfif" alt="Gift Flow Logo" class="logo pulsate-bck" />
 
         <p class="tagline">
           Discover the Perfect Gifts for Your Child with Ease
@@ -27,7 +29,10 @@ const HomePage = () => {
       </div>
 
       <div className="partners">
-        <h3>Comapnies With Us!</h3>
+        <div class="companies-section">
+          <h3>Companies With Us!</h3>
+        </div>
+
         <div className="moving-bar">
           <div className="moving-bar-inner">
             <img src="ToysRus.png" alt="Company Logo 1" />
@@ -103,8 +108,10 @@ const HomePage = () => {
           </div>
         </div>
       </Collapse>
+      <div class="companies-section">
+        <h3 className="heading-three">Why Choose GiftFlow?</h3>
+      </div>
       <div className="why-choose-giftflow">
-        <h3>Why Choose GiftFlow?</h3>
         <div className="cards-container">
           <div className="card" style={{ background: "#ecb7fc3d" }}>
             <h5>Tailored for Children</h5>

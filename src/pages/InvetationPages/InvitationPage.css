@@ -26,13 +26,13 @@
 .invitation-page::before {
   background: #eb81cb;
   top: 0;
-  left: -30%;
+  left: -20%;
 }
 
 .invitation-page::after {
   background: #ff92ad;
   bottom: 0;
-  right: -30%;
+  right: -20%;
 }
 
 .invitation-page h1 {
@@ -119,4 +119,106 @@
   height: 200px;
   cursor: pointer;
   animation: fly 5s forwards ease-in-out;
+}
+
+/* Invitation Card CSS */
+.invitation-card {
+  background: linear-gradient(135deg, #f9f3fa, #f1e4f3);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  font-family: "Arial", sans-serif;
+}
+
+.invitation-card .balloon {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  width: 80px;
+  height: 120px;
+  background: #ff92ad;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(-50%, -10px);
+  }
+  50% {
+    transform: translate(-50%, 10px);
+  }
+  100% {
+    transform: translate(-50%, -10px);
+  }
+}
+
+.invitation-card h1 {
+  font-size: 2.5em;
+  color: #4a4a4a;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.invitation-card h1 span {
+  color: #ff92ad;
+  font-size: 0.8em;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.invitation-card h4 {
+  color: #555;
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.invitation-card h4 strong {
+  color: #e53935;
+}
+
+.invitation-card p {
+  color: #777;
+  margin: 10px 0;
+  font-size: 1em;
+}
+
+.invitation-card .balloon::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: rgba(255, 0, 0, 0.3);
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .invitation-card {
+    padding: 20px;
+  }
+
+  .invitation-card h1 {
+    font-size: 2em;
+  }
+
+  .invitation-card h4 {
+    font-size: 1em;
+  }
+
+  .invitation-card .balloon {
+    width: 60px;
+    height: 90px;
+  }
 }
