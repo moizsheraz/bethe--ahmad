@@ -47,17 +47,18 @@
   font-size: 1rem;
   border: none;
   border-radius: 20px;
-  background-color: #ff92ad;
+  background-color: #088395;
   color: #000;
   cursor: pointer;
 }
 
 .btn:hover {
-  background-color: #eb81cb;
+  background-color: #37b7c3;
 }
 
 .btn.active {
-  background-color: #f455c4;
+  background-color: #088395;
+  color: #ebf4f6;
 }
 
 .view-switcher {
@@ -67,9 +68,10 @@
 }
 
 .invite-section {
-  display: flex;
+  display: inline;
+
   justify-content: center;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .invite-btn {
@@ -80,12 +82,12 @@
   border: none;
   outline: none;
   border-radius: 20px;
-  background-color: #ff92ad;
+  background-color: #088395;
   color: #fff;
 }
 
 .invite-btn:hover {
-  background-color: #eb81cb;
+  background-color: #37b7c3;
 }
 
 .modal-overlay {

@@ -4,8 +4,9 @@
 
   border-radius: 8px;
 
-  max-width: 800px;
+  max-width: 100%;
   margin: auto;
+  color: #ebf4f6;
 }
 
 .qa-list h2 {
@@ -13,6 +14,7 @@
   color: #333;
   margin-bottom: 20px;
   font-size: 24px;
+  color: #ebf4f6;
 }
 
 .question-item {
@@ -21,6 +23,7 @@
   background-color: #facad8;
   border: 1px solid #ddd;
   border-radius: 8px;
+  color: #ebf4f6;
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -32,7 +35,7 @@
 
 .question-text {
   font-size: 18px;
-  color: #555;
+  color: #ebf4f6;
   margin-bottom: 15px;
 }
 
@@ -59,7 +62,7 @@
 }
 
 input[type="radio"] {
-  accent-color: #ff92ad;
+  accent-color: #088395;
 }
 
 .text-area {
@@ -74,7 +77,7 @@ input[type="radio"] {
 }
 
 .text-area:focus {
-  border-color: #ff92ad;
+  border-color: #ebf4f6;
   outline: none;
 }
 

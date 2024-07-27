@@ -5,6 +5,7 @@ import { firestore } from '../../firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 const GiftList = ({ gifts, deleteGift, setEditingGift, childName, isSuggested, isAdded, addLikedGift }) => {
+  console.log('GiftList', gifts);
   const [likedProducts, setLikedProducts] = useState([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');

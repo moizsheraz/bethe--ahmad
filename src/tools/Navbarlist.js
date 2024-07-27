@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import '../styles/NavBar.css';
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+import "../styles/NavBar.css";
 
 const Navbarlist = ({ currentUser, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,18 +15,30 @@ const Navbarlist = ({ currentUser, onLogout }) => {
         <button className="hamburger" onClick={toggleMenu}>
           &#9776;
         </button>
-        
-        <div className={`nav-menu ${isOpen ? 'open' : ''}`}>
+
+        <div className={`nav-menu ${isOpen ? "open" : ""}`}>
           <NavLink to="/" className="nav-link" onClick={() => setIsOpen(false)}>
             Home
           </NavLink>
-          <NavLink to="/products" className="nav-link" onClick={() => setIsOpen(false)}>
+          <NavLink
+            to="/products"
+            className="nav-link"
+            onClick={() => setIsOpen(false)}
+          >
             Products
           </NavLink>
-          <NavLink to="/ai-help" className="nav-link" onClick={() => setIsOpen(false)}>
+          <NavLink
+            to="/ai-help"
+            className="nav-link"
+            onClick={() => setIsOpen(false)}
+          >
             AI help me!
           </NavLink>
-          <NavLink to="/about" className="nav-link" onClick={() => setIsOpen(false)}>
+          <NavLink
+            to="/about"
+            className="nav-link"
+            onClick={() => setIsOpen(false)}
+          >
             About Us
           </NavLink>
         </div>
@@ -38,9 +50,7 @@ const Navbarlist = ({ currentUser, onLogout }) => {
           ) : (
             <div className="dropdown">
               <button className="dropbtn">
-                <div className="user">
-                  {currentUser.email.charAt(0)}
-                </div>
+                <div className="user">{currentUser.email.charAt(0)}</div>
               </button>
               <div className="dropdown-content">
                 <Link to="/gifts-Page" onClick={() => setIsOpen(false)}>
@@ -53,7 +63,13 @@ const Navbarlist = ({ currentUser, onLogout }) => {
                   Calendar
                 </Link>
                 <div className="dropdown-divider"></div>
-                <Link to="/login" onClick={() => { onLogout(); setIsOpen(false); }}>
+                <Link
+                  to="/login"
+                  onClick={() => {
+                    onLogout();
+                    setIsOpen(false);
+                  }}
+                >
                   Sign Out
                 </Link>
               </div>

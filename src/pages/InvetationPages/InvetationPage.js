@@ -111,15 +111,11 @@ const InvitationPage = () => {
     : ["", "", "", "", ""];
 
   return (
-    <div className="invitation-page">
-      <div>
+    <div className="outer-container">
+      <div className="invitation-page">
+        {/* <div>
         <div className="balloon"></div>
-        <h1>
-          Birthday Party Invitation 🎉
-          <span style={{ cursor: "pointer" }} onClick={handleCopy}>
-            <FaCopy width={"8"} height={"8"} />
-          </span>
-        </h1>
+        <h1>Birthday Party Invitation 🎉</h1>
         <h4>You are invited to celebrate {name}'s birthday!</h4>
         <h4>
           📅 Date and Time:{" "}
@@ -138,73 +134,111 @@ const InvitationPage = () => {
             <strong>Additional Details:</strong> {description}
           </p>
         )}
-      </div>
-      {summary && (
-        <p>
-          <strong>Child Will love these Gifts:</strong> {summary}
-        </p>
-      )}
-      <div className="calendar-button-container" style={{ marginTop: "20px" }}>
-        <a
-          href={getGoogleCalendarLink()}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="google-calendar-button"
-        >
-          Add to Google Calendar
-        </a>
-      </div>
-      {/* Container for filter and gift list */}
-      <div className="content-container">
-        {/* Filter Section */}
-        <div
-          className="filter-container"
-          style={{ display: "flex", justifyContent: "center" }}
-        >
-          <select
-            id="priceRange"
-            className="price-filter"
-            style={{ width: "20vw" }}
-            value={selectedPriceRange}
-            onChange={(e) => setSelectedPriceRange(e.target.value)}
-          >
-            <option value="all">All</option>
-            <option value="0-50">$0 - $50</option>
-            <option value="51-100">$51 - $100</option>
-            <option value="101-200">$101 - $200</option>
-            <option value="201-500">$201 - $500</option>
-            <option value="500+">$500+</option>
-          </select>
+      </div> */}
+        <div className="invitation-container">
+          {/* <div className="balloon"></div> */}
+          <h1>🎉Birthday Party Invitation 🎉</h1>
+          <h4>You are invited to celebrate {name}'s birthday! 🥳</h4>
+          <h4>
+            📅 Date and Time:{" "}
+            <strong>
+              {time} {DateArr[0]} {DateArr[2]} {DateArr[1]}
+            </strong>
+          </h4>
+          <h4>
+            📍 Location: <strong>{place}</strong>
+          </h4>
+          <h4>
+            Come rejoice, dance, and surprise {name} with gifts they truly love!
+            🎁
+          </h4>
+          {description && (
+            <p>
+              <strong>Additional Details:</strong> {description}
+            </p>
+          )}
+          <div className="copy">
+            <strong>Invitation Link:</strong>
+            <span
+              style={{ cursor: "pointer", fontSize: "1rem", padding: "10px" }}
+              onClick={handleCopy}
+            >
+              <FaCopy width={"8"} height={"8"} />
+            </span>
+          </div>
         </div>
 
-        {/* Gifts List */}
-        {filteredList && filteredList.length > 0 && (
-          <div className="item-list">
-            {filteredList.map((item, index) => (
-              <li key={index} className="item">
-                <img src={item.image} alt={item.name} />
-                <p>
-                  <strong>Name:</strong> {item.name}
-                </p>
-                <p>
-                  <strong>Price:</strong> {item.price}
-                </p>
-                <p>
-                  <strong>Description:</strong> {item.description}
-                </p>
-              </li>
-            ))}
-          </div>
+        {summary && (
+          <p style={{ color: "#304463", fontSize: "1rem" }}>
+            <strong>Child Will love these Gifts:</strong> {summary}
+          </p>
         )}
-      </div>
+        <div className="calendar-button-container" style={{ margin: "20px 0" }}>
+          <a
+            href={getGoogleCalendarLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="google-calendar-button"
+          >
+            Add to Google Calendar
+          </a>
+        </div>
+        {/* Container for filter and gift list */}
+        <div className="content-container">
+          {/* Filter Section */}
+          <div
+            className="filter-container"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              backgroundColor: "#37B7C3",
+            }}
+          >
+            <select
+              id="priceRange"
+              className="price-filter"
+              style={{ width: "20vw", color: "#EBF4F6" }}
+              value={selectedPriceRange}
+              onChange={(e) => setSelectedPriceRange(e.target.value)}
+            >
+              <option value="all">All</option>
+              <option value="0-50">$0 - $50</option>
+              <option value="51-100">$51 - $100</option>
+              <option value="101-200">$101 - $200</option>
+              <option value="201-500">$201 - $500</option>
+              <option value="500+">$500+</option>
+            </select>
+          </div>
 
-      {/* Gift Box Animation */}
-      <div
-        className={`gift-container ${isGiftOpen ? "gift-open" : ""}`}
-        onClick={handleGiftClick}
-      >
-        <div className="gift-lid"></div>
-        <div className="gift-box"></div>
+          {/* Gifts List */}
+          {filteredList && filteredList.length > 0 && (
+            <div className="item-list">
+              {filteredList.map((item, index) => (
+                <li key={index} className="item">
+                  <img src={item.image} alt={item.name} />
+                  <p>
+                    <strong>Name:</strong> {item.name}
+                  </p>
+                  <p>
+                    <strong>Price:</strong> {item.price}
+                  </p>
+                  <p>
+                    <strong>Description:</strong> {item.description}
+                  </p>
+                </li>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Gift Box Animation */}
+        <div
+          className={`gift-container ${isGiftOpen ? "gift-open" : ""}`}
+          onClick={handleGiftClick}
+        >
+          <div className="gift-lid"></div>
+          <div className="gift-box"></div>
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,8 @@ import userQuestions from "../assets/questions.json";
 import "../styles/Aiforom.css";
 import ProductCard from "../Product";
 import productsData from "../assets/products.json";
-import loading from "../../src/assets/loading.gif";
+import { useNavigate } from "react-router-dom";
+// import loading from "../../src/assets/loading.gif";
 
 function SurveyForm() {
   const [questions, setQuestions] = useState([]);
@@ -65,13 +66,21 @@ function SurveyForm() {
     }
   };
 
+  // const handlePrev = () => {
+  //   if (step > 0) {
+  //     setStep((prevStep) => prevStep - 1);
+  //     setAnsweredCount((prevCount) => prevCount - 1);
+  //   }
+  // };
+  const navigate = useNavigate();
   const handlePrev = () => {
-    if (step > 0) {
+    if (step <= 0) {
+      navigate("/ai-help");
+    } else {
       setStep((prevStep) => prevStep - 1);
       setAnsweredCount((prevCount) => prevCount - 1);
     }
   };
-
   const axiosOptions = {
     withCredentials: true,
     headers: {
@@ -129,12 +138,13 @@ function SurveyForm() {
         <div className="survey-content">
           {isLoading ? (
             <div className="loading-spinner">
-              
-              <h2>AI is thinking..</h2>
+              <h2 style={{ color: "#304463" }}>AI is thinking..</h2>
             </div>
           ) : isFinished ? (
             <div className="products">
-              <h1>According to your answers, we suggest you buy:</h1>
+              <h1 style={{ color: "#304463" }}>
+                According to your answers, we suggest you buy:
+              </h1>
               <div className="price-filter">
                 <label htmlFor="price-range">Filter by price range:</label>
                 <select id="price-range" onChange={handlePriceRangeChange}>
@@ -169,7 +179,11 @@ function SurveyForm() {
                 that artificial intelligence can assist you well.
               </p>
               <p>Sound good to you?</p>
-              <button className="primary-button" onClick={() => setStep(0)}>
+              <button
+                style={{ color: "#EBF4F6" }}
+                className="primary-button"
+                onClick={() => setStep(0)}
+              >
                 Let's get started
               </button>
             </div>
@@ -214,7 +228,7 @@ function SurveyForm() {
                 )}
               </div>
               <div className="button-group">
-                {step > 0 && (
+                {step >= 0 && (
                   <button className="secondary-button" onClick={handlePrev}>
                     <i className="fas fa-arrow-right"></i>
                   </button>

@@ -4,6 +4,8 @@
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  background-color: #ebf4f6;
+  color: #304463;
 }
 
 .child-list-container h2 {
@@ -16,6 +18,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #ebf4f6;
 }
 
 .child-list-headings,
@@ -31,12 +34,8 @@
 }
 
 .child-list-headings {
-  background: linear-gradient(
-    to right,
-    rgba(223, 61, 183, 0.989),
-    rgba(218, 77, 77, 0.972)
-  );
-  color: #fff;
+  background: linear-gradient(to right, #071952, #071952);
+  color: #ebf4f6;
   margin-bottom: 15px;
 }
 
@@ -47,7 +46,7 @@
 }
 
 .child-list-item {
-  background-color: #fff;
+  background-color: #ebf4f6;
   border: 1px solid #ccc;
   margin-bottom: 10px;
   cursor: pointer;
@@ -55,18 +54,20 @@
 }
 
 .child-list-item:hover {
-  background: #ececec;
+  background: #37b7c3;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  color: #ebf4f6;
 }
 
 .child-list-item .child-name,
 .child-list-item .child-age,
 .child-list-item .child-dob {
   font-size: 1rem;
-  color: #333;
+  color: #304463;
 }
 
 /* Active state for child list item */
 .child-list-item.active {
-  background-color: #facad8;
+  background-color: #37b7c3;
+  color: #ebf4f6;
 }

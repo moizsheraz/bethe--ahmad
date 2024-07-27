@@ -12,7 +12,7 @@
 }
 
 .invitation-modal-content {
-  background-color: #fff;
+  background-color: #ebf4f6;
   border-radius: 10px;
   padding: 20px;
   max-width: 500px;
@@ -38,7 +38,7 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #333;
+  color: #ebf4f6;
 }
 
 .invitation-modal-body {
@@ -63,13 +63,13 @@
   width: 100%;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid #ebf4f6;
   box-sizing: border-box;
 }
 
 .invitation-modal button {
-  background-color: #ff92ad;
-  color: #fff;
+  background-color: #088395;
+  color: #ebf4f6;
   border: none;
   outline: none;
   padding: 10px 20px;
@@ -79,5 +79,5 @@
 }
 
 .invitation-modal button:hover {
-  background-color: #eb81cb;
+  background-color: #37b7c3;
 }

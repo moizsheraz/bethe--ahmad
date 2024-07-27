@@ -70,10 +70,10 @@ label {
   border: none;
   outline: none;
   border-radius: 20px;
-  background-color: #ff92ad;
+  background-color: #088395;
   color: #000;
 }
 
 .add-child-form .btns button:hover {
-  background-color: #eb81cb;
+  background-color: #37b7c3;
 }

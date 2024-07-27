@@ -5,7 +5,7 @@
 }
 
 .page-title {
-  color: #1a1a1a;
+  color: #304463;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -24,12 +24,12 @@
   border: none;
   outline: none;
   border-radius: 20px;
-  background-color: #ff92ad;
+  background-color: #088395;
   color: #000;
 }
 
 .actions button:hover {
-  background-color: #eb81cb;
+  background-color: #37b7c3;
 }
 
 .content {
@@ -42,7 +42,7 @@
 
 .section {
   flex: 1;
-  border: 1px solid #4a4a4a38;
+  border: 1px solid #304463;
   border-radius: 20px;
   padding: 10px;
 }
@@ -60,7 +60,7 @@
 }
 
 .modal-content {
-  background-color: #ffffff;
+  background-color: #ebf4f6;
   margin-top: 7%;
   border-radius: 20px;
   padding: 20px;

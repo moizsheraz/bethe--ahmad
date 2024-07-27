@@ -56,7 +56,7 @@ const InvitationForm = ({ listOfGifts, childName, childId, friends,summary }) =>
             <div className="invitation-modal-content">
                 <div className="invitation-modal-header">
                     <h2>Invitation for {childName}</h2>
-                    <button className="close-btn" onClick={() => navigate('/')}>X</button>
+                    <button className="close-btn" onClick={() =>window.location.reload()}>X</button>
                 </div>
                 <div className="invitation-modal-body">
                     <form onSubmit={handleSubmit}>

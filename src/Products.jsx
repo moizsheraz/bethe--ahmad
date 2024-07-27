@@ -141,7 +141,7 @@ function Products() {
 
       <div className="products">
         <div className="product-cards">
-          <h1>מוצרים נבחרים</h1>
+          <h1 style={{ color: "#EBF4F6" }}>מוצרים נבחרים</h1>
           <div className="grid-container">
             {filteredProducts.map((product) => (
               <ProductCard
@@ -165,10 +165,13 @@ function Products() {
             </button>
           </div>
         </div>
-        <footer>
-          <div className="rights">
-            &copy; 2024 GiftFlow. All rights reserved.
-          </div>
+        <footer
+          style={{
+            color: "#EBF4F6",
+            backgroundColor: "#088395",
+          }}
+        >
+          <div>&copy; 2024 GiftFlow. All rights reserved.</div>
         </footer>
       </div>
     </>

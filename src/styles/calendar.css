@@ -4,30 +4,31 @@
   align-items: center;
   padding: 20px;
   min-height: 100vh;
-  color: #333;
+  color: #304463;
 }
 
 .calendar-page .page-title {
   font-size: 3rem;
   margin: 35px auto;
   font-weight: bold;
+  color: #304463;
 }
 
 .add-event-button {
   padding: 15px 35px;
   font-size: 1.2rem;
-  color: #fff;
+  color: #ebf4f6;
   border: none;
   border-radius: 15px;
   cursor: pointer;
   margin: 20px auto;
-  background-color: #ff92ad;
+  background-color: #088395;
 }
 .add-event-button:hover {
-  background-color: #eb81cb;
+  background-color: #37b7c3;
 }
 .add-event-button:disabled {
-  background-color: #cccccc;
+  background-color: #ebf4f6;
 }
 
 .events-list {
@@ -38,7 +39,7 @@
 }
 
 .event-card {
-  background-color: #fff;
+  background-color: #ebf4f6;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -51,10 +52,10 @@
 }
 
 .share-button {
-  background-color: rgba(210, 165, 247, 0.9);
+  background-color: #088395;
   padding: 15px 35px;
   font-size: 1.2rem;
-  color: #fff;
+  color: #ebf4f6;
   border: none;
   border-radius: 15px;
   cursor: pointer;
@@ -82,7 +83,7 @@
 }
 
 .modal-content {
-  background: #fff;
+  background: #ebf4f6;
   padding: 20px;
   border-radius: 10px;
   width: 90%;
@@ -117,7 +118,7 @@
   padding: 10px;
   margin-bottom: 10px;
   outline: none;
-  border: 1px solid #ccc;
+  border: 1px solid #ebf4f6;
   border-radius: 10px;
 }
 
@@ -129,8 +130,8 @@
 .modal-footer button {
   padding: 10px 20px;
   font-size: 1rem;
-  color: #fff;
-  background-color: #ff92ad;
+  color: #ebf4f6;
+  background-color: #088395;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -138,10 +139,10 @@
 }
 
 .modal-footer button:hover {
-  background-color: #eb81cb;
+  background-color: #37b7c3;
 }
 .event-card {
-  background: #eb81cb;
+  background: #071952;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 20px 0;
@@ -152,7 +153,7 @@
 
 .event-card::before {
   content: "";
-  background: #f2e5f5;
+  background: #37b7c3;
   position: absolute;
   width: 200%;
   height: 200%;
@@ -168,36 +169,37 @@
   transform: translateY(-50%);
   width: 100px;
   height: 150px;
-  background: rgba(255, 0, 0, 0.2);
+  background: #ebf4f6b0;
   border-radius: 50%;
   z-index: 2;
 }
 .event-card-content {
   position: relative;
   z-index: 3;
+  color: #304463;
 }
 .event-card h3 {
   margin: 0;
   font-size: 1.5em;
-  color: #333;
+  color: #304463;
 }
 .event-card p {
   margin: 10px 0;
-  color: #666;
+  color: #304463;
 }
 .event-card button {
-  background: #ff92ad;
+  background: #088395;
 
   border: none;
-  color: white;
+  color: #088395;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   margin-right: 10px;
 }
 .event-card button:hover {
-  background-color: #eb81cb;
+  background-color: #37b7c3af;
 }
 .event-card button.delete {
-  background: #ff92ad;
+  background: #088395;
 }

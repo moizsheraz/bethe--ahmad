@@ -20,7 +20,7 @@ const GiftsPage = () => {
       gifts: child.gifts || [],
       friends: child.friends || [],
       invitations: child.invitations || [],
-      events: child.events || [], 
+      events: child.events || [],
     }))
   );
   const [selectedChild, setSelectedChild] = useState(null);
@@ -29,7 +29,7 @@ const GiftsPage = () => {
   const [invite, setInvitation] = useState(false);
   const [addingFriend, setAddingFriend] = useState(false);
   const [view, setView] = useState(null);
-  const [activeButton, setActiveButton] = useState(null); 
+  const [activeButton, setActiveButton] = useState(null);
   const [suggestedGifts, setSuggestedGifts] = useState([]);
   const [summary, setSummary] = useState("");
   const getAiSuggestedProductIds = async () => {
@@ -53,8 +53,6 @@ const GiftsPage = () => {
       ids.includes(product.id.toString())
     );
   };
-
-  
 
   useEffect(() => {
     const fetchSuggestedGifts = async () => {
@@ -214,6 +212,16 @@ const GiftsPage = () => {
 
   return (
     <div className="gifts-page">
+      {selectedChild && (
+        <div className="invite-section">
+          <button
+            className="btn invite-btn"
+            onClick={() => setInvitation(true)}
+          >
+            Invite Friends
+          </button>
+        </div>
+      )}
       <h1 className="page-title">
         Manage Gifts for {selectedChild ? selectedChild.name : ""}
       </h1>{" "}
@@ -261,7 +269,6 @@ const GiftsPage = () => {
                   addGift={addGift}
                   setAddingGift={setAddingGift}
                   childName={selectedChild?.name}
-                  
                 />
               )}
 
@@ -290,23 +297,19 @@ const GiftsPage = () => {
                         addLikedGift={addLikedGift}
                       />
                     </div>
-                  ):<h2>AI is thinking..</h2>}
+                  ) : (
+                    <h2>AI is thinking..</h2>
+                  )}
                 </>
               )}
 
-              {view === "summary" &&
-                summary && ( 
-                  <div className="summary-section">
-                    <h3>Child will like...</h3>
-                    <p className="">{summary}</p>
-                  </div>
-                )}
-              {view === null &&
-                 ( 
-                  <div className="summary-section">
-                   
-                  </div>
-                )}
+              {view === "summary" && summary && (
+                <div className="summary-section">
+                  <h3>Child will like...</h3>
+                  <p className="">{summary}</p>
+                </div>
+              )}
+              {view === null && <div className="summary-section"></div>}
             </>
           )}
         </div>
@@ -346,16 +349,7 @@ const GiftsPage = () => {
           </div>
         </div>
       )}
-      {selectedChild && (
-        <div className="invite-section">
-          <button
-            className="btn invite-btn"
-            onClick={() => setInvitation(true)}
-          >
-            Invite Friends
-          </button>
-        </div>
-      )}
+      {/* old invite friend */}
       {invite && selectedChild && (
         <div className="modal-overlay">
           <div className="modal-content">

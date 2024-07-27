@@ -14,6 +14,8 @@ export const ChildProvider = ({ children }) => {
     return storedChildrenData ? JSON.parse(storedChildrenData) : [];
   });
 
+  const [loading, setLoading] = useState(false);
+
   const getUserFromLocalStorage = () => {
     const userInfo = localStorage.getItem('user-info');
     return userInfo ? JSON.parse(userInfo) : null;
@@ -25,22 +27,27 @@ export const ChildProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchUserChildren = async () => {
-      const user = getUserFromLocalStorage();
-      if (!user) return; 
-      
-      const q = query(collection(firestore, 'children'), where('userId', '==', user.uid));
-      const querySnapshot = await getDocs(q);
-      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setChildrenData(data);
-      saveChildrenDataToLocalStorage(data);
+      setLoading(true);
+      try {
+        const user = getUserFromLocalStorage();
+        if (!user) return;
+
+        const q = query(collection(firestore, 'children'), where('userId', '==', user.uid));
+        const querySnapshot = await getDocs(q);
+        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        if (JSON.stringify(data) !== JSON.stringify(childrenData)) {
+          setChildrenData(data);
+          saveChildrenDataToLocalStorage(data);
+        }
+      } catch (error) {
+        console.error("Error fetching user children:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    const storedChildrenData = localStorage.getItem('children-data');
-    if (storedChildrenData) {
-      setChildrenData(JSON.parse(storedChildrenData));
-    } else {
-      fetchUserChildren();
-    }
+    fetchUserChildren();
   }, []);
 
   const addChild = async (child) => {
@@ -52,7 +59,7 @@ export const ChildProvider = ({ children }) => {
     
     const newChildrenData = [...childrenData, { id: docRef.id, ...childWithUserId }];
     setChildrenData(newChildrenData);
-    saveChildrenDataToLocalStorage(newChildrenData); 
+    saveChildrenDataToLocalStorage(newChildrenData);
   };
 
   const updateChild = async (id, updatedChild) => {
@@ -62,7 +69,7 @@ export const ChildProvider = ({ children }) => {
       child.id === id ? { ...child, ...updatedChild } : child
     );
     setChildrenData(newChildrenData);
-    saveChildrenDataToLocalStorage(newChildrenData); // Update local storage
+    saveChildrenDataToLocalStorage(newChildrenData);
   };
 
   const deleteChild = async (id) => {
@@ -70,11 +77,11 @@ export const ChildProvider = ({ children }) => {
     
     const newChildrenData = childrenData.filter(child => child.id !== id);
     setChildrenData(newChildrenData);
-    saveChildrenDataToLocalStorage(newChildrenData); // Update local storage
+    saveChildrenDataToLocalStorage(newChildrenData);
   };
 
   return (
-    <ChildContext.Provider value={{ childrenData, addChild, updateChild, deleteChild }}>
+    <ChildContext.Provider value={{ childrenData, addChild, updateChild, deleteChild, loading }}>
       {children}
     </ChildContext.Provider>
   );

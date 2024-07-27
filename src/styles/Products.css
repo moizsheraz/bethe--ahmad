@@ -17,9 +17,9 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background-color: #eb81cbd5;
+  background-color: #ebf4f6;
   /* border: 1px solid #eb81cb; */
-  border-radius: 0 10px 10px 10px;
+  /* border-radius: 0 10px 10px 10px; */
   /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
@@ -28,11 +28,11 @@
 .category-filter {
   padding: 0.5rem;
   font-size: 1rem;
-  border: 2px solid #ddd;
+  border: 2px solid #ebf4f6;
   border-radius: 5px;
   transition: all 0.3s ease;
   outline: none;
-  color: #333;
+  color: #304463;
 }
 
 .search-bar {
@@ -40,46 +40,33 @@
 }
 
 .search-bar::placeholder {
-  color: #888;
+  color: #304463;
 }
 
 .price-filter,
 .category-filter {
   min-width: 180px;
   appearance: none; /* Remove default arrow */
-  background: #fff;
+  background: #088395;
   position: relative;
-  background-color: #eb81cb;
+  background-color: #088395;
   background-image: none;
 }
 
 .search-bar:focus,
 .price-filter:focus,
 .category-filter:focus {
-  border-color: #8e8cff;
-  box-shadow: 0 0 5px rgba(142, 140, 255, 0.5);
+  border-color: #088395;
+  box-shadow: 0 0 5px #088395;
 }
 
 .price-filter:hover,
 .category-filter:hover,
 .search-bar:hover {
-  border-color: #8e8cff;
+  border-color: #088395;
 }
 
 /* Custom arrow for select elements */
-.price-filter::after,
-.category-filter::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  width: 12px;
-  height: 12px;
-  background: url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjODg4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMiAxMiI+PHBhdGggZD0iTTUgM2EuNS41IDAgMCAxIC43IDBMNiAyLjYyOWwxLjI5LjAwMUEuNS41IDAgMSAxIDggMyBMNSA0YS41LjUgMCAwIDEgMCAwbC0zLTFhLjUuNSAwIDAgMSAuMjktLjc0ek0wIDVhLjUuNSAwIDAgMSAuNzAxLS4zMDFMNiA3bDUuMy01LjM2Yy4xODgtLjE4OC40OTUtLjIwNy42ODUtLjAzMS4xOS4xOS4xODguNDk3LS4wMzMuNjg3TDYuMzU3IDhBMSAxIDAgMCAxIDUgM3oiLz48L3N2Zz4=")
-    no-repeat center center;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
 
 @media (max-width: 768px) {
   .filter-container {
@@ -99,7 +86,7 @@
   flex-basis: 70%;
   padding: 20px;
   text-align: center;
-  background-color: #eb81cb4e;
+  background-color: #37b7c3;
 }
 
 .search-bar {
@@ -109,7 +96,7 @@
   font-size: 1.2rem;
   outline: none;
   border: 1px solid #00000027;
-  box-shadow: 2px 2px 5px #deb5f171;
+  box-shadow: 2px 2px 5px #088395;
   border-radius: 15px;
   text-align: right;
 }
@@ -119,8 +106,8 @@
   padding: 10px;
   margin: 20px auto;
   font-size: 1.2rem;
-  background-color: #ebe2ecdc;
-  border: 1px solid #00000027;
+  background-color: #37b7c3;
+  border: 1px solid #088395;
   outline: none;
   border-radius: 15px;
   text-align: right;
@@ -140,7 +127,7 @@
   visibility: hidden;
   min-width: 250px;
   margin-left: -125px;
-  background-color: #eb81cb;
+  background-color: #071952;
   color: #fff;
   text-align: center;
   border-radius: 2px;
@@ -153,7 +140,7 @@
 
 .snackbar.show {
   visibility: visible;
-  animation: fadeInOut 3s;
+  /* animation: fadeInOut 0.6s; */
 }
 
 .snackbar-content {
@@ -177,7 +164,7 @@
   color: red;
 }
 
-@keyframes fadeInOut {
+/* @keyframes fadeInOut {
   0%,
   100% {
     opacity: 0;
@@ -186,4 +173,4 @@
   80% {
     opacity: 1;
   }
-}
+} */

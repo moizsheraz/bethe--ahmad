@@ -1,28 +1,28 @@
 .qa-list {
   font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #088395;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .qa-list h2 {
   text-align: center;
-  color: #333;
+  color: #304463;
   margin-bottom: 20px;
 }
 
 .question-item {
   margin-bottom: 15px;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #ebf4f6;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: #ebf4f6;
 }
 
 .question-text {
   font-size: 18px;
-  color: #555;
+  color: #304463;
   margin-bottom: 10px;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .option-label:hover {
-  background-color: #f0f0f0;
+  background-color: #088395;
 }
 
 .option-text {
@@ -49,5 +49,5 @@
 }
 
 input[type="radio"] {
-  accent-color: #ff92ad;
+  accent-color: #088395;
 }

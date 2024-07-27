@@ -4,8 +4,10 @@ body {
   padding: 0;
   box-sizing: border-box;
   direction: rtl;
-  background: linear-gradient(#87c3eb1e, #e9d0e36c);
+  background-color: #ebf4f6;
+  /* background: linear-gradient(#87c3eb1e, #e9d0e36c); */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
 }
 
 .scale-down-tr {
